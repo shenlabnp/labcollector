@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./
+      dockerfile: Dockerfile-mysql
+    volumes:
+      - ./mysql_db:/var/lib/mysql
+    command: ['--default-authentication-plugin=mysql_native_password', '--sql-mode=NO_ENGINE_SUBSTITUTION']
+    ports:
+      - "9306:3306"
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile-php
+    volumes:
+      - ./html:/var/www/html
+    container_name: labcollector_php_server
+    depends_on:
+      - db
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true

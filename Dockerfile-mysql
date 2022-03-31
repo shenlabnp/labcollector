@@ -1,0 +1,6 @@
+FROM mysql:8.0
+ENV MYSQL_ROOT_PASSWORD=labcollector
+ENV MYSQL_DATABASE=labcollector
+ENV MYSQL_USER=labcollector
+ENV MYSQL_PASSWORD=labcollector
+EXPOSE 3306

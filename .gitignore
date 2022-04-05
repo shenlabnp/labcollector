@@ -1,0 +1,4 @@
+mysql_db/
+!mysql_db/__put_mysql_socket_data_here__
+html/
+!html/__put_labcollector_files_here__

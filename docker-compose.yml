@@ -5,6 +5,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-mysql
+    security_opt:
+      - seccomp:unconfined
     volumes:
       - ./mysql_db:/var/lib/mysql
     command: ['--default-authentication-plugin=mysql_native_password', '--sql-mode=NO_ENGINE_SUBSTITUTION']

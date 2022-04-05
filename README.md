@@ -3,6 +3,7 @@ Instruction:
 1- make sure you have Docker installed and granted access
 2- download labcollector linux installation zip file (working for LabCollector 6.0) and extract the "html/" folder into the html/ folder here
 3- if you have existing backup, copy that instead, and copy/softlink the mysql socket folder to the mysql_db/ folder here
+3b- if anew, remove all content of mysql_db/
 4- from this folder, run "docker-compose build"
 5- then "docker-compose up"
 

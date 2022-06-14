@@ -25,3 +25,11 @@ services:
       - "8100:80"
     stdin_open: true
     tty: true
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_USER: labcollector
+      PMA_PASSWORD: labcollector
+    ports:
+      - "8101:80"

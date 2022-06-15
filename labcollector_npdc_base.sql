@@ -1,12 +1,31 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: db
+-- Generation Time: Jun 15, 2022 at 02:03 PM
+-- Server version: 8.0.29
+-- PHP Version: 8.0.19
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `labcollector`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `abook`
+--
 
 CREATE TABLE `abook` (
   `count` int UNSIGNED NOT NULL,
@@ -33,6 +52,12 @@ CREATE TABLE `abook` (
   `extra2` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
 CREATE TABLE `admin` (
   `id` int NOT NULL,
   `admin` varchar(255) DEFAULT NULL,
@@ -50,11 +75,21 @@ CREATE TABLE `admin` (
   `badge_number` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin`
+--
+
 INSERT INTO `admin` (`id`, `admin`, `password`, `user_type`, `contact_id`, `group_type`, `count_failed`, `ip_restriction`, `main_group_limit`, `suspended`, `temporary_pass`, `archived`, `pass_date`, `badge_number`) VALUES
 (1, 'superadmin', 'M:&FENZ|AWWbQ:I', 1, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'npdcadmin', 'M:&FENZ|AWRWE%', 2, 2, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:13:34', NULL),
 (3, 'limsadmin', 'M:&FENZ|AWPPNI', 0, 3, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:14:00', NULL),
 (4, 'guest', 'HK/KX', 0, 4, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:15:58', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alerts_email_setup`
+--
 
 CREATE TABLE `alerts_email_setup` (
   `id` tinyint UNSIGNED NOT NULL DEFAULT '0',
@@ -70,8 +105,18 @@ CREATE TABLE `alerts_email_setup` (
   `last_alert_sent` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `alerts_email_setup`
+--
+
 INSERT INTO `alerts_email_setup` (`id`, `status`, `email_freq`, `email_from`, `email_to`, `email_smtp`, `email_port`, `email_username`, `email_password_encrypted`, `email_secure`, `last_alert_sent`) VALUES
 (1, 0, NULL, NULL, NULL, NULL, '25', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals`
+--
 
 CREATE TABLE `animals` (
   `count` int UNSIGNED NOT NULL,
@@ -100,6 +145,12 @@ CREATE TABLE `animals` (
   `extra3` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals_cages`
+--
+
 CREATE TABLE `animals_cages` (
   `cage_id` int UNSIGNED NOT NULL,
   `animal_id` int UNSIGNED DEFAULT NULL,
@@ -110,6 +161,12 @@ CREATE TABLE `animals_cages` (
   `cmodule` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals_cages_def`
+--
+
 CREATE TABLE `animals_cages_def` (
   `count` smallint UNSIGNED NOT NULL,
   `room` varchar(100) DEFAULT NULL,
@@ -118,6 +175,12 @@ CREATE TABLE `animals_cages_def` (
   `places` smallint UNSIGNED DEFAULT NULL,
   `group_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals_crossbreed`
+--
 
 CREATE TABLE `animals_crossbreed` (
   `cross_id` int NOT NULL,
@@ -129,6 +192,12 @@ CREATE TABLE `animals_crossbreed` (
   `operator` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals_crossbreed_descendants`
+--
+
 CREATE TABLE `animals_crossbreed_descendants` (
   `id` int NOT NULL,
   `descendant` int NOT NULL,
@@ -136,6 +205,12 @@ CREATE TABLE `animals_crossbreed_descendants` (
   `cross_id` int NOT NULL,
   `operator` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `antibodies`
+--
 
 CREATE TABLE `antibodies` (
   `count` int UNSIGNED NOT NULL,
@@ -169,11 +244,21 @@ CREATE TABLE `antibodies` (
   `chem_id_child` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `antibodies_options`
+--
+
 CREATE TABLE `antibodies_options` (
   `option_id` tinyint UNSIGNED NOT NULL,
   `option_name` varchar(45) DEFAULT NULL,
   `option_type` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `antibodies_options`
+--
 
 INSERT INTO `antibodies_options` (`option_id`, `option_name`, `option_type`) VALUES
 (1, 'IgG', 'isotype'),
@@ -195,6 +280,12 @@ INSERT INTO `antibodies_options` (`option_id`, `option_name`, `option_type`) VAL
 (17, 'Rat', 'host'),
 (18, 'Flow Cytometry', 'app');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `associated_owners`
+--
+
 CREATE TABLE `associated_owners` (
   `id` int NOT NULL,
   `owner` int DEFAULT NULL,
@@ -203,6 +294,12 @@ CREATE TABLE `associated_owners` (
   `record_module` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookmarks`
+--
+
 CREATE TABLE `bookmarks` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -210,6 +307,12 @@ CREATE TABLE `bookmarks` (
   `description` varchar(150) DEFAULT NULL,
   `cat` smallint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_def`
+--
 
 CREATE TABLE `boxes_def` (
   `box_id` int UNSIGNED NOT NULL,
@@ -227,6 +330,12 @@ CREATE TABLE `boxes_def` (
   `box_max` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_def_model`
+--
+
 CREATE TABLE `boxes_def_model` (
   `box_id` int UNSIGNED NOT NULL,
   `box_name` varchar(100) DEFAULT NULL,
@@ -236,11 +345,21 @@ CREATE TABLE `boxes_def_model` (
   `keeper` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `boxes_def_model`
+--
+
 INSERT INTO `boxes_def_model` (`box_id`, `box_name`, `size`, `viso_size`, `box_type`, `keeper`) VALUES
 (1, 'Plate 96 well', 'A:1.H:12', NULL, 'plate', NULL),
 (2, 'Box 96 tubes', 'A:1.H:12', NULL, 'box', NULL),
 (3, 'Box 100 tubes', 'A:1.J:10', NULL, 'box', NULL),
 (4, 'Box 81 tubes', 'A:1.I:9', NULL, 'box', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_def_owners`
+--
 
 CREATE TABLE `boxes_def_owners` (
   `bdo_id` int UNSIGNED NOT NULL,
@@ -248,6 +367,12 @@ CREATE TABLE `boxes_def_owners` (
   `keeper_id` int UNSIGNED NOT NULL,
   `group_id` int UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_grid_def`
+--
 
 CREATE TABLE `boxes_grid_def` (
   `count` int UNSIGNED NOT NULL,
@@ -257,6 +382,12 @@ CREATE TABLE `boxes_grid_def` (
   `grid_user` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_grid_def_model`
+--
+
 CREATE TABLE `boxes_grid_def_model` (
   `count` int UNSIGNED NOT NULL,
   `box_id` int UNSIGNED DEFAULT NULL,
@@ -264,6 +395,12 @@ CREATE TABLE `boxes_grid_def_model` (
   `grid_extra` varchar(15) DEFAULT NULL,
   `grid_user` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_local_def`
+--
 
 CREATE TABLE `boxes_local_def` (
   `id` int UNSIGNED NOT NULL,
@@ -277,6 +414,12 @@ CREATE TABLE `boxes_local_def` (
   `storage_type` varchar(25) DEFAULT NULL,
   `store_mode` tinyint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_secondary_def`
+--
 
 CREATE TABLE `boxes_secondary_def` (
   `id` int UNSIGNED NOT NULL,
@@ -297,6 +440,12 @@ CREATE TABLE `boxes_secondary_def` (
   `max` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_storage_colors`
+--
+
 CREATE TABLE `boxes_storage_colors` (
   `color_grid_id` int UNSIGNED NOT NULL,
   `color` varchar(15) DEFAULT NULL,
@@ -307,12 +456,24 @@ CREATE TABLE `boxes_storage_colors` (
   `sec_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_storage_comments`
+--
+
 CREATE TABLE `boxes_storage_comments` (
   `comment_id` int UNSIGNED NOT NULL,
   `storage_id_sec` int UNSIGNED DEFAULT NULL,
   `record_id_main` varchar(15) DEFAULT NULL,
   `comments` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_straws_def`
+--
 
 CREATE TABLE `boxes_straws_def` (
   `straw_id` int UNSIGNED NOT NULL,
@@ -324,10 +485,20 @@ CREATE TABLE `boxes_straws_def` (
   `sec_id` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boxes_temp_def`
+--
+
 CREATE TABLE `boxes_temp_def` (
   `id` int UNSIGNED NOT NULL,
   `temperature` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `boxes_temp_def`
+--
 
 INSERT INTO `boxes_temp_def` (`id`, `temperature`) VALUES
 (1, '+25ºC'),
@@ -335,6 +506,12 @@ INSERT INTO `boxes_temp_def` (`id`, `temperature`) VALUES
 (3, '-20ºC'),
 (4, '-80ºC'),
 (5, '-168ºC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `budgets_money`
+--
 
 CREATE TABLE `budgets_money` (
   `b_id` int UNSIGNED NOT NULL,
@@ -349,12 +526,24 @@ CREATE TABLE `budgets_money` (
   `valid_threshold2` double DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `budgets_spread`
+--
+
 CREATE TABLE `budgets_spread` (
   `budget_scheduling_count` int NOT NULL,
   `b_id` int DEFAULT '0',
   `budget_scheduling_month` date DEFAULT NULL,
   `budget_scheduling_money` decimal(10,2) DEFAULT '0.00'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `certificates`
+--
 
 CREATE TABLE `certificates` (
   `certif_id` int UNSIGNED NOT NULL,
@@ -376,6 +565,12 @@ CREATE TABLE `certificates` (
   `current` tinyint UNSIGNED DEFAULT NULL,
   `signature_image` blob
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chemicals`
+--
 
 CREATE TABLE `chemicals` (
   `count` int UNSIGNED NOT NULL,
@@ -403,6 +598,12 @@ CREATE TABLE `chemicals` (
   `chem_special_code` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chemicals_lots`
+--
+
 CREATE TABLE `chemicals_lots` (
   `count` int UNSIGNED NOT NULL,
   `chem_id` int UNSIGNED DEFAULT NULL,
@@ -427,10 +628,22 @@ CREATE TABLE `chemicals_lots` (
   `d_trash_date` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_cat`
+--
+
 CREATE TABLE `chem_cat` (
   `cat_id` int UNSIGNED NOT NULL,
   `cat_name` varchar(75) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_lots_conso`
+--
 
 CREATE TABLE `chem_lots_conso` (
   `conso_id` int NOT NULL,
@@ -450,6 +663,12 @@ CREATE TABLE `chem_lots_conso` (
   `user_recredit` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_risk_icons`
+--
+
 CREATE TABLE `chem_risk_icons` (
   `count` int UNSIGNED NOT NULL,
   `chem_id` int UNSIGNED DEFAULT NULL,
@@ -457,11 +676,23 @@ CREATE TABLE `chem_risk_icons` (
   `module` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_risk_info`
+--
+
 CREATE TABLE `chem_risk_info` (
   `count` int NOT NULL,
   `chem_id` int DEFAULT NULL,
   `module` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_risk_link`
+--
 
 CREATE TABLE `chem_risk_link` (
   `count` int UNSIGNED NOT NULL,
@@ -471,10 +702,22 @@ CREATE TABLE `chem_risk_link` (
   `module` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chem_storage`
+--
+
 CREATE TABLE `chem_storage` (
   `storage_id` int UNSIGNED NOT NULL,
   `storage_desc` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
 
 CREATE TABLE `contacts` (
   `count` int UNSIGNED NOT NULL,
@@ -493,11 +736,21 @@ CREATE TABLE `contacts` (
   `language` varchar(4) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `contacts`
+--
+
 INSERT INTO `contacts` (`count`, `name`, `lab`, `address`, `city`, `zip`, `country`, `tel`, `email`, `organisms`, `dummyimage`, `dummyimage_text`, `dummyimage_background`, `language`) VALUES
 (1, 'Super Admin', '', '', '', '', '', '', 'super.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c54459ba293ffffffa7ada0b4b9aec0c4bbe6e7e4f2f3f1d9dcd6cdd0c9cc5f670d000000097048597300000ec400000ec401952b0e1b0000016e494441544889ed944d6bc2401086375f35c7bed6448f9152e8d150a957457bd77f604aa13d1a283d27d0427f7677f64356d911af857d0f71575f66e69999284450505090d4fdfca9bac6f702a0fc34d601d031be07284df46d0aecfdbeb8d1c6b1beae803bbf51e61aaf375fd6b83bc63ed7142595f7f8aee3a340e937ae4caa443d538c7698798d3d6e9d5b86e10a07c6b83f29643b65b04f23f6e86e18ec1a23e7b64395db069c2982537c2c9113063b871332a726360cb66cf14765ceaabe96c1cee4fc8aa53e2be2fa04cf514fdb3333c70355cd4c3bee8f3bd16049d3f7630bbd915bf9990082c608ce28163a648e8232004bd629d7b022e8e257aa61b0854ed711af1183ad31b6d441a3116f6ca9838d3516978d892a544db5ba987a60d621f162a7f6b74e424f9c82cf15bdd1f39996adb6b36b31f41831fe9effa8fa5bfb12d43eecc880be0a01dbe8c8879d9986540e43e6c55e34662107c76548fdff54f17cb3f67c1d1414f4dff407a21d326b8b5ae7ef0000000049454e44ae426082, 'FFF', '9ba293', NULL),
 (2, 'NPDC Admin', '', '', '', '', '', '', 'npdc.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c5445cf3c3bffffffe79d9df9e6e6d55453db6c6cedb5b5f3cecee18584d0e7424e000000097048597300000ec400000ec401952b0e1b00000153494441544889edd44d6ec230100560c80fb0ec6b68936552a9fb58425d278bee9b1be01b901b3437ef8c9d310d9e1be0d944824fc6efd961b74b9326cdd34f878b7b96c0e03f3900ad022dea073802bd0af1b3850bf0a6c37e0b67e05587cd0616a851e9b0dac0139ad9ef26822e6480479c175c7578fe0f47dc462db6c5972b28c00e6daec5b6b818de528033860cef1aec17fe258105652bb5d804732e4860c6251a2536415a6008d0edcf2ab109d2b6da005de2092f2a1ca920811d2fb6576233cca8208106bf7cd3e2d80c0bdafc0ae9b1e363840ae966f52bcc5cfb05785d0552412bcc517fd09838b6f56d57df1e4e58278aed2015f4e9a115d8e87044e3a11158eb3043e5e0fd20e5c578806ea5810bf4d7a18c63af70f13097f7cae0a6c3dcc349ceceba6bafc0d2432b2fc114c596afac8390a2f7516c8123c37b8663145ba02be4102ec349ffa74a9326cd73cd1f5eab3ebeee9b04890000000049454e44ae426082, 'FFF', 'cf3c3b', NULL),
 (3, 'LIMS Admin', '', '', '', '', '', '', 'lims.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c544503aa7affffff81d4bc22b48aa0dfcdc0e9dddff4ee61c9ab42bf9bac6ad8da000000097048597300000ec400000ec401952b0e1b000000fb494441544889edd43b1282301804e0288894ac8a5a1a0a6ba96cc90dc4197bb88114f67273030331d15f92de6cc5e38361f380311f1f1f1f8eb5712eb0a2a13061006c9de012c0d3052e243cb8c01c252a17d8e081bd0b2c71c6c6010648831fb54d3897a358d3b54db890671c851de6b2724bd73621978318d1b54dd87d5f48d73660df3806ac70debf8c9e6d0346d8f5970a1b6c91b06e1a131be4b8b06e8c763658e39a65d991acad43d9778805860adea761a4e0651ab6c3f1e7cefc8262580e2d555b87f5b0af22a493301ee74e963a1130bdf529e4fdad7ae2bbb6188b566ca6069aaaadc1778792a8ad41a11643f3eb4fe5e3e3f35779019de0297d808f47cf0000000049454e44ae426082, 'FFF', '03aa7a', NULL),
 (4, 'Guest', '', '', '', '', '', '', 'guest@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c54450698c0ffffff25a4c744b1cf82cbdfc0e5efdff2f7a1d8e763bed79234e35b000000097048597300000ec400000ec401952b0e1b000000ed494441544889edd43d0bc2301006e068fd5a0fb538561471b47eec558a385a10badac11fa0c55d14c19fed2551dbe9ee069dcc3b840e4fdb237789522e2e2eff91c16c1a08d83001cc61c5b905d8b419d70419ac6668fcf49c7170842ed70fe39c86f8c11353dcbbc28ec4a9102012c1237445aeca6f9f4d0b602b827569890d8089085600709dc7261702f6c1c775699bbd2760f823686acc48686b34e120c860691f6958ea0c0d6b45af69589a1e1aaae4338f0c2c269c8178667a22a88f752481fadffed5be41434f8f431ae34dc1407355f0d3a3b37e393f62a0ba1bb7131c1eefb1b9053c737171f9469ed89128be6d6d6eaa0000000049454e44ae426082, 'FFF', '0698c0', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts_home_blocks`
+--
 
 CREATE TABLE `contacts_home_blocks` (
   `block_id` int NOT NULL,
@@ -507,6 +760,12 @@ CREATE TABLE `contacts_home_blocks` (
   `display_order` int NOT NULL,
   `nb_columns` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `docs`
+--
 
 CREATE TABLE `docs` (
   `count` int UNSIGNED NOT NULL,
@@ -524,11 +783,21 @@ CREATE TABLE `docs` (
   `secret` tinyint UNSIGNED DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `docs_cat`
+--
+
 CREATE TABLE `docs_cat` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `parent` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `docs_cat`
+--
 
 INSERT INTO `docs_cat` (`id`, `name`, `parent`) VALUES
 (1, 'Protocols', 0),
@@ -548,6 +817,12 @@ INSERT INTO `docs_cat` (`id`, `name`, `parent`) VALUES
 (15, 'Budgets', 5),
 (16, 'Meetings', 4),
 (17, 'Lab Meetings', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipments`
+--
 
 CREATE TABLE `equipments` (
   `count` int UNSIGNED NOT NULL,
@@ -574,12 +849,24 @@ CREATE TABLE `equipments` (
   `chem_id_child` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `export_models`
+--
+
 CREATE TABLE `export_models` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `type` varchar(10) DEFAULT NULL,
   `export_system` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `export_models_fields`
+--
 
 CREATE TABLE `export_models_fields` (
   `count` int UNSIGNED NOT NULL,
@@ -588,6 +875,12 @@ CREATE TABLE `export_models_fields` (
   `model_id` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `field_masks`
+--
+
 CREATE TABLE `field_masks` (
   `id` int UNSIGNED NOT NULL,
   `field_name` varchar(100) DEFAULT NULL,
@@ -595,16 +888,30 @@ CREATE TABLE `field_masks` (
   `mask_val` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `field_masks`
+--
+
 INSERT INTO `field_masks` (`id`, `field_name`, `module_table`, `mask_val`) VALUES
 (1, 'name', 'npdc_strains', 'NPDC000000'),
 (2, 'name', 'npdc_gdnas', 'Category_Plate_Well'),
 (3, 'name', 'npdc_sequencing_batches', 'project_batch');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_types`
+--
 
 CREATE TABLE `file_types` (
   `count` tinyint UNSIGNED NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `file_logo` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `file_types`
+--
 
 INSERT INTO `file_types` (`count`, `name`, `file_logo`) VALUES
 (1, 'Document', 'icon_doc.gif'),
@@ -614,6 +921,12 @@ INSERT INTO `file_types` (`count`, `name`, `file_logo`) VALUES
 (5, 'Text', 'icon_txt.gif'),
 (6, 'Spreadsheet', 'icon_xls.gif'),
 (7, 'Compressed Archive', 'icon_zip.gif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
 
 CREATE TABLE `history` (
   `count` int UNSIGNED NOT NULL,
@@ -627,6 +940,10 @@ CREATE TABLE `history` (
   `action_reason` mediumtext,
   `checksum` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history`
+--
 
 INSERT INTO `history` (`count`, `user`, `user_action`, `user_module`, `user_record`, `date`, `contact_id`, `contact_name`, `action_reason`, `checksum`) VALUES
 (1, 'admin', '10.228.142.145', 'LOGIN', 0, '2022-06-09 15:54:52', 0, '', NULL, 'fe7381f21cda65a805ad7563872ace70e2ee84e1'),
@@ -786,7 +1103,36 @@ INSERT INTO `history` (`count`, `user`, `user_action`, `user_module`, `user_reco
 (155, 'superadmin', '10.228.142.129', 'LOGOUT', 0, '2022-06-13 17:16:02', 1, 'Super Admin', NULL, 'a62eab8c262cd2e943a2359ae2b1bde7d9da3424'),
 (156, 'guest', '10.228.142.129', 'LOGIN', 0, '2022-06-13 17:16:06', 4, 'Guest', NULL, 'd160806c975729f0e8798d0fe82042736e6fef56'),
 (157, 'guest', '10.228.142.129', 'LOGOUT', 0, '2022-06-13 17:16:23', 4, 'Guest', NULL, 'c5258b3f0f339314367e140e0ab345127bbf3b58'),
-(158, 'superadmin', '10.228.142.129', 'LOGIN', 0, '2022-06-13 17:16:31', 1, 'Super Admin', NULL, '897c55b299ae96be7502d2beefe6d64048cc29a2');
+(158, 'superadmin', '10.228.142.129', 'LOGIN', 0, '2022-06-13 17:16:31', 1, 'Super Admin', NULL, '897c55b299ae96be7502d2beefe6d64048cc29a2'),
+(159, 'superadmin', 'NEW Custom Field CREATION | Field ID: 52 | Field Database Name: isolation_region | Field Legend: Isolation Region | Field Type: field | Field Module: npdc_strains | Mandatory Value: No | Searchable Value: No | Filter Value: No | Field Helper Text: ', 'CUSTOM FIELD', 52, '2022-06-14 16:16:05', 1, 'Super Admin', NULL, 'baa5893d875edb2caef55aa59fe10dab828df18c'),
+(160, 'superadmin', 'Module Initial Search Enabled', 'admin', 61, '2022-06-14 16:17:43', 1, 'Super Admin', NULL, '40af73160dc6c21811a938ec41c5e9102d4aafd8'),
+(161, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:29:48', 1, 'Super Admin', NULL, '65e2d75d3c7c32b18e1de69c9d980d26794e0bd3'),
+(162, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:29:56', 1, 'Super Admin', NULL, '3aa49a2b514ece3d8b9408120d769f5024e2a98d'),
+(163, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:30:01', 1, 'Super Admin', NULL, 'b8dbd7ee76bd6a3d3cfead58c152bf1b9152961e'),
+(164, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:30:08', 1, 'Super Admin', NULL, 'bef29aba44a9f9762c4e8218e3c8e8e9fb65c56d'),
+(165, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:30:15', 1, 'Super Admin', NULL, '2a1d73b28a06aedd243002c2eba718a0cbf0f15e'),
+(166, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:30:21', 1, 'Super Admin', NULL, 'df4aff209051562a08ba55013d7e65645f4c42ac'),
+(167, 'superadmin', 'Edited Custom Field preset values (Field ID=18)', 'XL', 0, '2022-06-14 17:30:37', 1, 'Super Admin', NULL, '11c0667c31dd80b7e366e58e7de40a5c8afca0c8'),
+(168, 'superadmin', 'Edited Custom Field preset values (Field ID=18)', 'XL', 0, '2022-06-14 17:30:46', 1, 'Super Admin', NULL, 'b019be2802cd108a9010cdb41fcd88ee840dad99'),
+(169, 'superadmin', 'Edited Custom Field preset values (Field ID=41)', 'XX', 0, '2022-06-14 17:33:16', 1, 'Super Admin', NULL, '7c0f1268f7145110a9b433a94743bdb176d5bf51'),
+(170, 'superadmin', 'Edited Custom Field preset values (Field ID=41)', 'XX', 0, '2022-06-14 17:33:25', 1, 'Super Admin', NULL, 'eb397b45b44da5ea51704561f07fb7d2a3a4a7a8'),
+(171, 'superadmin', 'Edited Custom Field preset values (Field ID=41)', 'XX', 0, '2022-06-14 17:33:31', 1, 'Super Admin', NULL, '13ccf9b3a18c297b515d90d696fa35cea4ffdb0a'),
+(172, 'superadmin', 'Edited Custom Field preset values (Field ID=42)', 'XX', 0, '2022-06-14 17:33:47', 1, 'Super Admin', NULL, 'f0bbb6d03f7f3cc1546e9e65411cdba7b95c2eac'),
+(173, 'superadmin', 'Edited Custom Field preset values (Field ID=42)', 'XX', 0, '2022-06-14 17:33:55', 1, 'Super Admin', NULL, '420ee78baf48429eb9b5d672590632f620a51efd'),
+(174, 'superadmin', 'Edited Custom Field preset values (Field ID=42)', 'XX', 0, '2022-06-14 17:34:02', 1, 'Super Admin', NULL, '1ef4073372fa2ac730a7985650b3900a754a6a42'),
+(175, 'superadmin', 'Edited Custom Field preset values (Field ID=43)', 'XX', 0, '2022-06-14 17:34:15', 1, 'Super Admin', NULL, '0add22d42a59f0fc91753362a83e5738be13562a'),
+(176, 'superadmin', 'Edited Custom Field preset values (Field ID=43)', 'XX', 0, '2022-06-14 17:34:22', 1, 'Super Admin', NULL, '4cd37c57d5d0d1b7919bff4d5e6f67d0555cfa0e');
+INSERT INTO `history` (`count`, `user`, `user_action`, `user_module`, `user_record`, `date`, `contact_id`, `contact_name`, `action_reason`, `checksum`) VALUES
+(177, 'superadmin', 'Edited Custom Field preset values (Field ID=43)', 'XX', 0, '2022-06-14 17:34:27', 1, 'Super Admin', NULL, 'c170e5789fdf4a08405282adf7d5ada8bc1acac9'),
+(178, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:40:20', 1, 'Super Admin', NULL, '549e17ef65c7832b1e9809009530417a8ad52bb0'),
+(179, 'superadmin', 'Edited Custom Field preset values (Field ID=19)', 'XL', 0, '2022-06-14 17:51:54', 1, 'Super Admin', NULL, '7992b6640bb76b9f219e78d0c1d5e3275ab9974b'),
+(180, 'superadmin', 'Custom Field MODIFICATION | Field ID: 19 | Field Database Name: growth | Field Legend: Growth | Field Type: select | Field Module: npdc_liquid_growth | Mandatory Value: Yes | Previous Mandatory Value: Yes | Category Field: No | Previous Category Field: No | Searchable Value: No | Previous Searchable Value: No | Filter Value: No | Previous Filter Value: No | Field Helper Text: growth rate (0/1/2/3), C for contamination, F for fungal, X for others (put in comment) | Previous Field Helper Text:growth rate (0/1/2/3), F for fungal, X for others (put in comment)', 'CUSTOM FIELD', 19, '2022-06-14 17:52:24', 1, 'Super Admin', NULL, '1f792ab31a85fecc2fa2a7db53b07cde98276282');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `licence`
+--
 
 CREATE TABLE `licence` (
   `count` tinyint UNSIGNED NOT NULL,
@@ -794,8 +1140,18 @@ CREATE TABLE `licence` (
   `lc_version` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `licence`
+--
+
 INSERT INTO `licence` (`count`, `keyvalue`, `lc_version`) VALUES
 (1, 'GKCDHFNIejnsbZadidmUUxnpkVSbfcpZdsiv', '6.05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locked_records`
+--
 
 CREATE TABLE `locked_records` (
   `record_id` int NOT NULL,
@@ -805,6 +1161,12 @@ CREATE TABLE `locked_records` (
   `fields` text,
   `custom_fields` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maintenance`
+--
 
 CREATE TABLE `maintenance` (
   `count` int UNSIGNED NOT NULL,
@@ -817,6 +1179,12 @@ CREATE TABLE `maintenance` (
   `file_name` varchar(150) DEFAULT NULL,
   `alert` tinyint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
 
 CREATE TABLE `messages` (
   `count` int UNSIGNED NOT NULL,
@@ -833,6 +1201,12 @@ CREATE TABLE `messages` (
   `extra1` varchar(150) DEFAULT NULL,
   `extra2` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `microarrays`
+--
 
 CREATE TABLE `microarrays` (
   `count` int UNSIGNED NOT NULL,
@@ -860,6 +1234,12 @@ CREATE TABLE `microarrays` (
   `yTAT` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `microarrays_genes`
+--
+
 CREATE TABLE `microarrays_genes` (
   `id` int NOT NULL,
   `gene_id` varchar(100) DEFAULT NULL,
@@ -867,6 +1247,12 @@ CREATE TABLE `microarrays_genes` (
   `array_ref` int NOT NULL DEFAULT '0',
   `filetype` varchar(30) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules`
+--
 
 CREATE TABLE `modules` (
   `id` tinyint UNSIGNED NOT NULL,
@@ -885,6 +1271,10 @@ CREATE TABLE `modules` (
   `remote_captcha` tinyint UNSIGNED DEFAULT NULL,
   `nofity` tinyint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules`
+--
 
 INSERT INTO `modules` (`id`, `name`, `short_name`, `alternate_name`, `table_name`, `page`, `icon`, `sort_order`, `home`, `remote`, `remote_keeper`, `remote_show_userlist`, `remote_protect`, `remote_captcha`, `nofity`) VALUES
 (1, 'Strains & Cells', 'ST', '', 'strains', 'strains.php', '1.png', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -906,6 +1296,12 @@ INSERT INTO `modules` (`id`, `name`, `short_name`, `alternate_name`, `table_name
 (18, 'NPDC: Sequencing Batches', 'X2', '', 'npdc_sequencing_batches', 'cmodule.php?cmodule=X2', '108.png', 18, 1, NULL, NULL, NULL, NULL, NULL, NULL),
 (19, 'NPDC: Sequencing Samples', 'X3', '', 'npdc_sequencing_samples', 'cmodule.php?cmodule=X3', '108.png', 19, 1, NULL, NULL, NULL, NULL, NULL, NULL),
 (20, 'NPDC: Genome Sequences', 'XX', '', 'npdc_genome_sequences', 'cmodule.php?cmodule=XX', '124.png', 20, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_custom`
+--
 
 CREATE TABLE `modules_custom` (
   `field_id` int UNSIGNED NOT NULL,
@@ -945,16 +1341,20 @@ CREATE TABLE `modules_custom` (
   `field_sec_cat_val` varchar(220) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `modules_custom`
+--
+
 INSERT INTO `modules_custom` (`field_id`, `field_name`, `size`, `field_type`, `module_table`, `searchable`, `filter`, `sort_order`, `field_cat`, `field_cat_val`, `analysis_tab`, `link_limit`, `mandatory`, `field_color`, `search_head`, `helper_text`, `validation`, `tolerance`, `validation_ref_field`, `postfix`, `alert_active`, `alert_start`, `alert_end`, `alert_value`, `min`, `max`, `min2`, `max2`, `readonly`, `encrypted`, `visible`, `uniqueness`, `associated_module_table`, `summary_line_width`, `field_sec_cat_val`) VALUES
 (3, 'collection', '50', 'field', 'npdc_strains', 1, 1, 4, 0, 0, 0, NULL, 0, '', 0, 'original collection library name', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (4, 'alt_id', '50', 'field', 'npdc_strains', 1, 0, 5, 0, 0, 0, NULL, 0, '', 0, 'original collection id', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (5, 'isolation_date', NULL, 'date', 'npdc_strains', 1, 0, 6, 0, 0, 0, NULL, 0, '', 0, 'original isolation date (if known, or collection date)', NULL, NULL, NULL, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL),
 (6, 'isolation_country', '50', 'field', 'npdc_strains', 1, 0, 7, 0, 0, 0, NULL, 0, '', 0, 'country where the strain is isolated (or in some cases, library\'s location)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (7, 'category', '50', 'field', 'npdc_strains', 0, 0, 3, 0, 0, 0, NULL, 0, '', 0, 'strain category', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(8, 'genus', '50', 'field', 'npdc_strains', 1, 0, 8, 0, 0, 0, NULL, 0, '', 0, 'genus information as in the historical metadata (empirically derived)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(9, 'species', '50', 'field', 'npdc_strains', 1, 0, 9, 0, 0, 0, NULL, 0, '', 0, 'species information as in the historical metadata (empirically derived)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(10, 'comment_type_strain', '50', 'field', 'npdc_strains', 1, 0, 10, 0, 0, 0, NULL, 0, '', 0, 'if there is any type strain identifier, list here with commas', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(11, 'comment_original', '50', 'field', 'npdc_strains', 0, 0, 11, 0, 0, 0, NULL, 0, '', 0, 'original comments from the historical metadata', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
+(8, 'genus', '50', 'field', 'npdc_strains', 1, 0, 9, 0, 0, 0, NULL, 0, '', 0, 'genus information as in the historical metadata (empirically derived)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
+(9, 'species', '50', 'field', 'npdc_strains', 1, 0, 10, 0, 0, 0, NULL, 0, '', 0, 'species information as in the historical metadata (empirically derived)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
+(10, 'comment_type_strain', '50', 'field', 'npdc_strains', 1, 0, 11, 0, 0, 0, NULL, 0, '', 0, 'if there is any type strain identifier, list here with commas', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
+(11, 'comment_original', '50', 'field', 'npdc_strains', 0, 0, 12, 0, 0, 0, NULL, 0, '', 0, 'original comments from the historical metadata', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (12, 'npdc_id', '100', 'autocomplete', 'npdc_liquid_growth', 1, 0, 3, 0, 0, 0, NULL, 0, '', 0, '', 'RECORD_LOCKED', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (13, 'media', '50', 'field', 'npdc_liquid_growth', 1, 0, 5, 0, 0, 0, NULL, 0, '', 0, 'media used for liquid growth', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (14, 'antibiotics', '50', 'field', 'npdc_liquid_growth', 1, 0, 6, 0, 0, 0, NULL, 0, '', 0, 'antibiotics used for liquid growth', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
@@ -962,7 +1362,7 @@ INSERT INTO `modules_custom` (`field_id`, `field_name`, `size`, `field_type`, `m
 (16, 'inoculation_time', '50', 'select', 'npdc_liquid_growth', 1, 0, 8, 0, 0, 0, NULL, 0, '', 0, 'time inoculated (AM/PM)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (17, 'harvest_date', NULL, 'date', 'npdc_liquid_growth', 1, 0, 9, 0, 0, 0, NULL, 0, '', 0, 'date harvested', NULL, NULL, NULL, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL),
 (18, 'harvest_time', NULL, 'select', 'npdc_liquid_growth', 1, 0, 10, 0, 0, 0, NULL, 0, '', 0, 'time harvested (AM/PM)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(19, 'growth', '50', 'select', 'npdc_liquid_growth', 0, 0, 4, 0, 0, 0, NULL, 1, '', 0, 'growth rate (0/1/2/3), F for fungal, X for others (put in comment)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL),
+(19, 'growth', '50', 'select', 'npdc_liquid_growth', 0, 0, 4, 0, 0, 0, NULL, 1, '', 0, 'growth rate (0/1/2/3), C for contamination, F for fungal, X for others (put in comment)', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (20, 'picture', '50', 'field', 'npdc_liquid_growth', 0, 0, 11, 0, 0, 0, NULL, 0, '', 0, 'picture number in dropbox (you can use only number e.g., \"1\" or with specific order of tubes e.g., \"1-1\")', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (21, 'npdc_id', '100', 'autocomplete', 'npdc_gdnas', 1, 0, 3, 0, 0, 0, NULL, 1, '', 0, '', 'RECORD_LOCKED', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', NULL, NULL, NULL, NULL),
 (22, 'category', '50', 'select', 'npdc_gdnas', 1, 0, 4, 0, 0, 0, NULL, 0, '', 0, 'default category = NPDC', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
@@ -994,7 +1394,14 @@ INSERT INTO `modules_custom` (`field_id`, `field_name`, `size`, `field_type`, `m
 (48, 'size', '12,0', 'decimal', 'npdc_genome_sequences', 0, 0, 11, 0, 0, 0, NULL, 0, '', 0, 'total genome size in bp', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (49, 'n50', '4,4', 'decimal', 'npdc_genome_sequences', 0, 0, 12, 0, 0, 0, NULL, 0, '', 0, 'genomes N50', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
 (50, 'reads_count', '12,0', 'decimal', 'npdc_genome_sequences', 0, 0, 13, 0, 0, 0, NULL, 0, '', 0, 'number of reads', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
-(51, 'reads_size', '20,0', 'decimal', 'npdc_genome_sequences', 0, 0, 14, 0, 0, 0, NULL, 0, '', 0, 'total reads size in bp', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL);
+(51, 'reads_size', '20,0', 'decimal', 'npdc_genome_sequences', 0, 0, 14, 0, 0, 0, NULL, 0, '', 0, 'total reads size in bp', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL),
+(52, 'isolation_region', '50', 'field', 'npdc_strains', 0, 0, 8, 0, 0, 0, NULL, 0, '', 0, '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'Y', 0, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_custom_field_legends`
+--
 
 CREATE TABLE `modules_custom_field_legends` (
   `id` int NOT NULL,
@@ -1002,6 +1409,10 @@ CREATE TABLE `modules_custom_field_legends` (
   `custom_field_id` int NOT NULL,
   `lang` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules_custom_field_legends`
+--
 
 INSERT INTO `modules_custom_field_legends` (`id`, `custom_legend`, `custom_field_id`, `lang`) VALUES
 (1, 'npdc_id', 1, 'EN'),
@@ -1054,7 +1465,14 @@ INSERT INTO `modules_custom_field_legends` (`id`, `custom_legend`, `custom_field
 (48, 'Size', 48, 'EN'),
 (49, 'N50', 49, 'EN'),
 (50, 'Reads Count', 50, 'EN'),
-(51, 'Reads Size', 51, 'EN');
+(51, 'Reads Size', 51, 'EN'),
+(52, 'Isolation Region', 52, 'EN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_custom_files`
+--
 
 CREATE TABLE `modules_custom_files` (
   `file_id` int UNSIGNED NOT NULL,
@@ -1063,6 +1481,12 @@ CREATE TABLE `modules_custom_files` (
   `file_size` int UNSIGNED DEFAULT NULL,
   `file_content` longblob
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_custom_options`
+--
 
 CREATE TABLE `modules_custom_options` (
   `option_id` int UNSIGNED NOT NULL,
@@ -1084,6 +1508,10 @@ CREATE TABLE `modules_custom_options` (
   `extra3` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `modules_custom_options`
+--
+
 INSERT INTO `modules_custom_options` (`option_id`, `module_id`, `module_short_name`, `cmodule_log`, `cmodule_storage`, `cmodule_animals_storage`, `cmodule_sampleconv`, `cmodule_reagent_link`, `cmodule_analysistab`, `cmodule_registrybook`, `cmodule_process`, `cmodule_molecule`, `cmodule_seq`, `cmodule_risks`, `extra1`, `extra2`, `extra3`) VALUES
 (1, 14, 'XS', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
 (2, 15, 'XL', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
@@ -1091,6 +1519,12 @@ INSERT INTO `modules_custom_options` (`option_id`, `module_id`, `module_short_na
 (5, 18, 'X2', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
 (6, 19, 'X3', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL),
 (7, 20, 'XX', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_custom_values`
+--
 
 CREATE TABLE `modules_custom_values` (
   `val_id` int UNSIGNED NOT NULL,
@@ -1100,6 +1534,10 @@ CREATE TABLE `modules_custom_values` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `value_color` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules_custom_values`
+--
 
 INSERT INTO `modules_custom_values` (`val_id`, `value`, `field_id_link`, `default_val`, `active`, `value_color`) VALUES
 (1, 'npdc_strains', 12, NULL, 1, NULL),
@@ -1115,7 +1553,31 @@ INSERT INTO `modules_custom_values` (`val_id`, `value`, `field_id_link`, `defaul
 (11, 'npdc_gdnas', 37, NULL, 1, NULL),
 (12, 'Yes', 39, NULL, 1, NULL),
 (13, 'No', 39, NULL, 1, NULL),
-(14, 'npdc_sequencing_samples', 40, NULL, 1, NULL);
+(14, 'npdc_sequencing_samples', 40, NULL, 1, NULL),
+(15, '1', 19, NULL, 1, NULL),
+(16, '2', 19, NULL, 1, NULL),
+(17, '3', 19, NULL, 1, NULL),
+(18, 'F', 19, NULL, 1, NULL),
+(19, 'X', 19, NULL, 1, NULL),
+(20, 'AM', 18, NULL, 1, NULL),
+(21, 'PM', 18, NULL, 1, NULL),
+(22, 'assembled', 41, NULL, 1, NULL),
+(23, 'pending', 41, NULL, 1, NULL),
+(24, 'failed', 41, NULL, 1, NULL),
+(25, 'passed', 42, NULL, 1, NULL),
+(26, 'pending', 42, NULL, 1, NULL),
+(27, 'failed', 42, NULL, 1, NULL),
+(28, 'annotated', 43, NULL, 1, NULL),
+(29, 'pending', 43, NULL, 1, NULL),
+(30, 'failed', 43, NULL, 1, NULL),
+(31, '0', 19, NULL, 1, NULL),
+(32, 'C', 19, NULL, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_field`
+--
 
 CREATE TABLE `modules_field` (
   `field_id` int NOT NULL,
@@ -1131,6 +1593,10 @@ CREATE TABLE `modules_field` (
   `module_table` varchar(50) NOT NULL,
   `summary_line_width` tinyint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules_field`
+--
 
 INSERT INTO `modules_field` (`field_id`, `name`, `type`, `form_name_ref`, `form_name`, `form_type`, `form_order`, `visible`, `mandatory`, `summary_line`, `module_table`, `summary_line_width`) VALUES
 (1, 'count', 'int', 'newid', NULL, NULL, NULL, 'N', 0, 0, 'strains', NULL),
@@ -1442,8 +1908,8 @@ INSERT INTO `modules_field` (`field_id`, `name`, `type`, `form_name_ref`, `form_
 (307, 'yTAT', 'varchar', '', NULL, NULL, NULL, 'N', 0, 0, 'microarrays', NULL),
 (308, 'count', 'int', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
 (309, 'name', 'varchar', 'newname', 'name', 'text', 2, 'Y', 1, 0, 'npdc_strains', NULL),
-(310, 'comment_log', 'longtext', 'newdesc', 'comment_log', 'textarea', 12, 'Y', 0, 0, 'npdc_strains', NULL),
-(311, 'keeper', 'int', 'contact', 'keeper', 'select', 13, 'Y', 1, 0, 'npdc_strains', NULL),
+(310, 'comment_log', 'longtext', 'newdesc', 'comment_log', 'textarea', 13, 'Y', 0, 0, 'npdc_strains', NULL),
+(311, 'keeper', 'int', 'contact', 'keeper', 'select', 14, 'Y', 1, 0, 'npdc_strains', NULL),
 (312, 'box_id', 'int', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
 (313, 'box_details', 'text', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
 (314, 'box_status', 'tinyint', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
@@ -1578,12 +2044,22 @@ INSERT INTO `modules_field` (`field_id`, `name`, `type`, `form_name_ref`, `form_
 (467, 'extra2', 'varchar', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_genome_sequences', NULL),
 (468, 'extra3', 'varchar', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_genome_sequences', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_field_legends`
+--
+
 CREATE TABLE `modules_field_legends` (
   `id` int NOT NULL,
   `form_legend` varchar(250) NOT NULL,
   `form_field_id` int NOT NULL,
   `lang` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules_field_legends`
+--
 
 INSERT INTO `modules_field_legends` (`id`, `form_legend`, `form_field_id`, `lang`) VALUES
 (1, 'Optional Reference', 2, 'EN'),
@@ -1756,6 +2232,12 @@ INSERT INTO `modules_field_legends` (`id`, `form_legend`, `form_field_id`, `lang
 (168, 'Owner', 449, 'EN'),
 (169, 'Optional Unique Code', 464, 'EN');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_field_options`
+--
+
 CREATE TABLE `modules_field_options` (
   `id` int NOT NULL,
   `module` varchar(50) NOT NULL,
@@ -1768,6 +2250,12 @@ CREATE TABLE `modules_field_options` (
   `multiple_owners` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_options`
+--
+
 CREATE TABLE `modules_options` (
   `option_id` int UNSIGNED NOT NULL,
   `option_name` varchar(255) DEFAULT NULL,
@@ -1775,6 +2263,10 @@ CREATE TABLE `modules_options` (
   `option_extra` text,
   `module_ref` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules_options`
+--
 
 INSERT INTO `modules_options` (`option_id`, `option_name`, `option_type`, `option_extra`, `module_ref`) VALUES
 (1, 'Cy3', 'labels', '5', 'PR'),
@@ -1834,7 +2326,13 @@ INSERT INTO `modules_options` (`option_id`, `option_name`, `option_type`, `optio
 (56, '', 'lc_custom_date_format', '', 'login'),
 (58, '', 'ACCESS_ADMIN_SETUP', NULL, 'login'),
 (62, 'America/New_York', 'lc_timezone', NULL, 'login'),
-(61, 'DEFAULT_SEARCH_SORT', NULL, 'OFF', 'login');
+(61, 'DEFAULT_SEARCH_SORT', NULL, 'ON', 'login');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_options_cron`
+--
 
 CREATE TABLE `modules_options_cron` (
   `cron_id` int NOT NULL,
@@ -1848,8 +2346,18 @@ CREATE TABLE `modules_options_cron` (
   `cron_desc` varchar(500) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `modules_options_cron`
+--
+
 INSERT INTO `modules_options_cron` (`cron_id`, `cron_name`, `cron_type`, `cron_cmd`, `cron_periode`, `cron_hh`, `cron_mm`, `cron_on_off`, `cron_desc`) VALUES
 (1, 'LC_EMAIL', 'LC_TASK', 'email/cron_mailer.php', 'DAILY', 0, 0, 0, '....');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modules_relation`
+--
 
 CREATE TABLE `modules_relation` (
   `count` int UNSIGNED NOT NULL,
@@ -1858,6 +2366,12 @@ CREATE TABLE `modules_relation` (
   `module_to` varchar(4) DEFAULT NULL,
   `id_to` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ncbi_requests`
+--
 
 CREATE TABLE `ncbi_requests` (
   `id` int NOT NULL,
@@ -1871,6 +2385,12 @@ CREATE TABLE `ncbi_requests` (
   `database_used` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_annotations`
+--
+
 CREATE TABLE `netplasmid_annotations` (
   `id` int NOT NULL,
   `plasmid_id` int DEFAULT NULL,
@@ -1882,12 +2402,24 @@ CREATE TABLE `netplasmid_annotations` (
   `level` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_customs_seqs`
+--
+
 CREATE TABLE `netplasmid_customs_seqs` (
   `id` int NOT NULL,
   `label` varchar(30) DEFAULT NULL,
   `start` varchar(100) DEFAULT NULL,
   `stop` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_def`
+--
 
 CREATE TABLE `netplasmid_def` (
   `plasmid_id` int UNSIGNED NOT NULL,
@@ -1897,6 +2429,12 @@ CREATE TABLE `netplasmid_def` (
   `record_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_enz`
+--
+
 CREATE TABLE `netplasmid_enz` (
   `id` int UNSIGNED NOT NULL,
   `plasmid_id` int UNSIGNED DEFAULT NULL,
@@ -1904,11 +2442,23 @@ CREATE TABLE `netplasmid_enz` (
   `enz_pos` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_images`
+--
+
 CREATE TABLE `netplasmid_images` (
   `id` int UNSIGNED NOT NULL,
   `plasmid_id` int UNSIGNED DEFAULT NULL,
   `plasmid_file` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_orf`
+--
 
 CREATE TABLE `netplasmid_orf` (
   `id` int UNSIGNED NOT NULL,
@@ -1921,12 +2471,22 @@ CREATE TABLE `netplasmid_orf` (
   `insert_key` tinyint UNSIGNED DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_orf_markers`
+--
+
 CREATE TABLE `netplasmid_orf_markers` (
   `count` int UNSIGNED NOT NULL,
   `label` varchar(15) DEFAULT NULL,
   `tag` varchar(200) DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `netplasmid_orf_markers`
+--
 
 INSERT INTO `netplasmid_orf_markers` (`count`, `label`, `tag`, `description`) VALUES
 (1, 'Amp', 'gttgcgcaaactattaactggcgaactact', 'Ampicilin resistance (beta-lactamase)'),
@@ -1936,6 +2496,12 @@ INSERT INTO `netplasmid_orf_markers` (`count`, `label`, `tag`, `description`) VA
 (5, 'Luc', 'atcctatttttggcaatcaaatcattccggatactgcgat', 'Luciferase'),
 (6, 'LacZ', 'ccgcaccgatcgcccttcccaacagttgcgcagcctgaat', 'LacZ');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `netplasmid_restriction_enzymes`
+--
+
 CREATE TABLE `netplasmid_restriction_enzymes` (
   `count` int UNSIGNED NOT NULL,
   `enz_name` varchar(15) DEFAULT NULL,
@@ -1944,6 +2510,10 @@ CREATE TABLE `netplasmid_restriction_enzymes` (
   `enz_seq_size` tinyint UNSIGNED DEFAULT NULL,
   `preselect` tinyint UNSIGNED DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `netplasmid_restriction_enzymes`
+--
 
 INSERT INTO `netplasmid_restriction_enzymes` (`count`, `enz_name`, `enz_seq`, `enz_seq_clean`, `enz_seq_size`, `preselect`) VALUES
 (1, 'AarI', 'CACCTGCNNNN^', '', 11, 0),
@@ -2652,6 +3222,12 @@ INSERT INTO `netplasmid_restriction_enzymes` (`count`, `enz_name`, `enz_seq`, `e
 (704, 'ZraI', 'GAC^GTC', '', 6, 0),
 (705, 'Zsp2I', 'ATGCA^T', '', 6, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_gdnas`
+--
+
 CREATE TABLE `npdc_gdnas` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -2687,6 +3263,12 @@ CREATE TABLE `npdc_gdnas` (
   `quantus_concentration` decimal(6,2) DEFAULT NULL,
   `person_in_charge` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_genome_sequences`
+--
 
 CREATE TABLE `npdc_genome_sequences` (
   `count` int UNSIGNED NOT NULL,
@@ -2726,6 +3308,12 @@ CREATE TABLE `npdc_genome_sequences` (
   `reads_size` decimal(20,0) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_liquid_growth`
+--
+
 CREATE TABLE `npdc_liquid_growth` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -2761,6 +3349,12 @@ CREATE TABLE `npdc_liquid_growth` (
   `picture` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_sequencing_batches`
+--
+
 CREATE TABLE `npdc_sequencing_batches` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -2792,6 +3386,12 @@ CREATE TABLE `npdc_sequencing_batches` (
   `finished` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_sequencing_samples`
+--
+
 CREATE TABLE `npdc_sequencing_samples` (
   `count` int UNSIGNED NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -2821,6 +3421,12 @@ CREATE TABLE `npdc_sequencing_samples` (
   `quantus_concentration` decimal(6,2) DEFAULT NULL,
   `gdna_used_up` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `npdc_strains`
+--
 
 CREATE TABLE `npdc_strains` (
   `count` int UNSIGNED NOT NULL,
@@ -2853,8 +3459,15 @@ CREATE TABLE `npdc_strains` (
   `genus` varchar(50) DEFAULT NULL,
   `species` varchar(50) DEFAULT NULL,
   `comment_type_strain` varchar(50) DEFAULT NULL,
-  `comment_original` varchar(50) DEFAULT NULL
+  `comment_original` varchar(50) DEFAULT NULL,
+  `isolation_region` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_list`
+--
 
 CREATE TABLE `order_list` (
   `order_list_id` mediumint UNSIGNED NOT NULL,
@@ -2885,6 +3498,12 @@ CREATE TABLE `order_list` (
   `risks_approved_date` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_list_invoices`
+--
+
 CREATE TABLE `order_list_invoices` (
   `inv_id` int UNSIGNED NOT NULL,
   `po_number` varchar(50) DEFAULT NULL,
@@ -2894,6 +3513,12 @@ CREATE TABLE `order_list_invoices` (
   `invoice_real_value` decimal(10,2) UNSIGNED DEFAULT NULL,
   `invoice_image_file` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_list_quotes`
+--
 
 CREATE TABLE `order_list_quotes` (
   `quote_id` int NOT NULL,
@@ -2906,6 +3531,12 @@ CREATE TABLE `order_list_quotes` (
   `contact_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_templates`
+--
+
 CREATE TABLE `order_templates` (
   `template_id` int UNSIGNED NOT NULL,
   `template_name` varchar(35) DEFAULT NULL,
@@ -2913,8 +3544,18 @@ CREATE TABLE `order_templates` (
   `template_code` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `order_templates`
+--
+
 INSERT INTO `order_templates` (`template_id`, `template_name`, `template_desc`, `template_code`) VALUES
 (1, 'Demo Template', 'A demo template', '<html>\r\n<head>\r\n<title>Untitled Document</title>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\r\n<style type=\"text/css\">\r\n<!--\r\n.tablecontour {\r\n	border: 1px solid #333333;\r\n}\r\n-->\r\n</style>\r\n</head>\r\n\r\n<body>\r\n<table width=\"700\" border=\"0\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\" class=\"tablecontour\">\r\n  <tr> \r\n    <td colspan=\"3\"><div align=\"center\"> \r\n        <h2>PURCHASE ORDER</h2>\r\n      </div></td>\r\n  </tr>\r\n  <tr> \r\n    <td width=\"303\"> </td>\r\n    <td width=\"33\"> </td>\r\n    <td width=\"340\"><table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\" class=\"tablecontour\">\r\n        <tr> \r\n          <td><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">##date##</font></td>\r\n        </tr>\r\n        <tr> \r\n          <td><font size=\"2\" face=\"Arial, Helvetica, sans-serif\"><strong>PO number: \r\n            </strong>##po_number##</font></td>\r\n        </tr>\r\n      </table></td>\r\n  </tr>\r\n  <tr valign=\"top\"> \r\n    <td> <table width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"1\" class=\"tablecontour\">\r\n        <tr> \r\n          <td><font size=\"2\" face=\"Arial, Helvetica, sans-serif\"><strong>Deliver \r\n            to:</strong></font></td>\r\n        </tr>\r\n        <tr> \r\n          <td><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">Institute Address<br>\r\n            Av of Science<br>\r\n            1000 City<br>\r\n            Country </font></td>\r\n        </tr>\r\n      </table></td>\r\n    <td> </td>\r\n    <td><table width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"1\" class=\"tablecontour\">\r\n        <tr> \r\n          <td><font size=\"2\" face=\"Arial, Helvetica, sans-serif\"><strong>Supplier:</strong></font></td>\r\n        </tr>\r\n        <tr> \r\n          <td valign=\"top\"><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">##seller_address##</font></td>\r\n        </tr>\r\n        <tr> \r\n          <td valign=\"top\"><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">Tel: \r\n            ##seller_tel##</font></td>\r\n        </tr>\r\n        <tr> \r\n          <td valign=\"top\"><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">Fax: \r\n            ##seller_fax##</font></td>\r\n        </tr>\r\n        <tr> \r\n          <td valign=\"top\"><font size=\"2\" face=\"Arial, Helvetica, sans-serif\">Email: \r\n            ##seller_email##</font></td>\r\n        </tr>\r\n      </table> </td>\r\n  </tr>\r\n  <tr> \r\n    <td> </td>\r\n    <td> </td>\r\n    <td> </td>\r\n  </tr>\r\n  <tr> \r\n    <td colspan=\"3\">##items##</td>\r\n  </tr>\r\n  <tr>\r\n    <td colspan=\"3\">&nbsp;</td>\r\n  </tr>\r\n  <tr> \r\n    <td colspan=\"3\" class=\"tablecontour\">##comment##</td>\r\n  </tr>\r\n  <tr> \r\n    <td> </td>\r\n    <td> </td>\r\n    <td> </td>\r\n  </tr>\r\n  <tr> \r\n    <td> </td>\r\n    <td> </td>\r\n    <td> </td>\r\n  </tr>\r\n  <tr> \r\n    <td> </td>\r\n    <td> </td>\r\n    <td> </td>\r\n  </tr>\r\n  <tr> \r\n    <td> </td>\r\n    <td>&nbsp;</td>\r\n    <td> </td>\r\n  </tr>\r\n  <tr> \r\n    <td class=\"tablecontour\"><p> </p>\r\n      <p>&nbsp;</p></td>\r\n    <td> </td>\r\n    <td class=\"tablecontour\"><div align=\"center\"> Total ordered: ##total_order##</div></td>\r\n  </tr>\r\n</table>\r\n</body>\r\n</html>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_templates_xls`
+--
 
 CREATE TABLE `order_templates_xls` (
   `id` int NOT NULL,
@@ -2924,10 +3565,22 @@ CREATE TABLE `order_templates_xls` (
   `lib` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organisms`
+--
+
 CREATE TABLE `organisms` (
   `org_id` int UNSIGNED NOT NULL,
   `org_name` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plasmids`
+--
 
 CREATE TABLE `plasmids` (
   `count` int UNSIGNED NOT NULL,
@@ -2956,12 +3609,24 @@ CREATE TABLE `plasmids` (
   `chem_id_child` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plasmid_sequences`
+--
+
 CREATE TABLE `plasmid_sequences` (
   `count` int UNSIGNED NOT NULL,
   `plasmid_id` int UNSIGNED DEFAULT NULL,
   `seq` mediumtext,
   `label` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `primers`
+--
 
 CREATE TABLE `primers` (
   `count` int UNSIGNED NOT NULL,
@@ -2995,6 +3660,12 @@ CREATE TABLE `primers` (
   `chem_id_child` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `processes`
+--
+
 CREATE TABLE `processes` (
   `count` int UNSIGNED NOT NULL,
   `sample_id` int UNSIGNED DEFAULT NULL,
@@ -3011,11 +3682,23 @@ CREATE TABLE `processes` (
   `doc_id` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process_type_def`
+--
+
 CREATE TABLE `process_type_def` (
   `count` tinyint UNSIGNED NOT NULL,
   `label` varchar(150) DEFAULT NULL,
   `parent` tinyint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects_lc`
+--
 
 CREATE TABLE `projects_lc` (
   `proj_id` int UNSIGNED NOT NULL,
@@ -3029,6 +3712,12 @@ CREATE TABLE `projects_lc` (
   `archived` tinyint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects_lc_groups`
+--
+
 CREATE TABLE `projects_lc_groups` (
   `id` int NOT NULL,
   `proj_id` int NOT NULL,
@@ -3037,6 +3726,12 @@ CREATE TABLE `projects_lc_groups` (
   `extra2` varchar(150) DEFAULT NULL,
   `extra3` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects_lc_records`
+--
 
 CREATE TABLE `projects_lc_records` (
   `count_id` int NOT NULL,
@@ -3047,6 +3742,12 @@ CREATE TABLE `projects_lc_records` (
   `extra2` varchar(150) DEFAULT NULL,
   `extra3` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes`
+--
 
 CREATE TABLE `recipes` (
   `id` int UNSIGNED NOT NULL,
@@ -3067,12 +3768,24 @@ CREATE TABLE `recipes` (
   `category_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes_categories`
+--
+
 CREATE TABLE `recipes_categories` (
   `id` int UNSIGNED NOT NULL,
   `category` varchar(255) NOT NULL,
   `date_created` timestamp NULL DEFAULT NULL,
   `date_updated` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipes_log`
+--
 
 CREATE TABLE `recipes_log` (
   `id` int UNSIGNED NOT NULL,
@@ -3086,6 +3799,12 @@ CREATE TABLE `recipes_log` (
   `initial_obs_log` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recipe_components`
+--
+
 CREATE TABLE `recipe_components` (
   `component_id` int UNSIGNED NOT NULL,
   `module` varchar(10) DEFAULT NULL,
@@ -3096,6 +3815,12 @@ CREATE TABLE `recipe_components` (
   `recipe_id` int DEFAULT NULL,
   `step` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `records_options`
+--
 
 CREATE TABLE `records_options` (
   `option_id` tinyint UNSIGNED NOT NULL,
@@ -3108,6 +3833,12 @@ CREATE TABLE `records_options` (
   `wait_edit` tinyint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `record_versioning`
+--
+
 CREATE TABLE `record_versioning` (
   `id` int NOT NULL,
   `record_id` int NOT NULL,
@@ -3119,6 +3850,12 @@ CREATE TABLE `record_versioning` (
   `app_name` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `risk_danger`
+--
+
 CREATE TABLE `risk_danger` (
   `danger_id` int NOT NULL,
   `code` varchar(16) NOT NULL,
@@ -3126,6 +3863,10 @@ CREATE TABLE `risk_danger` (
   `small_icon` varchar(64) NOT NULL,
   `type` varchar(16) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `risk_danger`
+--
 
 INSERT INTO `risk_danger` (`danger_id`, `code`, `icon`, `small_icon`, `type`) VALUES
 (1, 'GHS01', 'ghs_explos.gif', 'ghs_explos_25.gif', 'GHS'),
@@ -3156,6 +3897,12 @@ INSERT INTO `risk_danger` (`danger_id`, `code`, `icon`, `small_icon`, `type`) VA
 (26, 'EPI17', 'epi_harness.png', 'epi_harness_25.png', 'EPI'),
 (27, 'EPI18', 'epi_alert.png', 'epi_alert_25.png', 'EPI');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `risk_safety`
+--
+
 CREATE TABLE `risk_safety` (
   `risk_id` int UNSIGNED NOT NULL,
   `code` varchar(50) DEFAULT NULL,
@@ -3171,6 +3918,10 @@ CREATE TABLE `risk_safety` (
   `NFPA_S` tinyint UNSIGNED DEFAULT NULL,
   `GHSversion` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `risk_safety`
+--
 
 INSERT INTO `risk_safety` (`risk_id`, `code`, `description`, `risk`, `safety`, `danger`, `advice`, `properties`, `NFPA_H`, `NFPA_F`, `NFPA_R`, `NFPA_S`, `GHSversion`) VALUES
 (1, 'R1', 'Explosive when dry ', 1, 0, 0, 0, 0, 0, 0, 0, 0, ''),
@@ -3676,6 +4427,12 @@ INSERT INTO `risk_safety` (`risk_id`, `code`, `description`, `risk`, `safety`, `
 (1092, 'P503', 'Refer to manufacturer/supplier... for information on disposal/recovery/recycling', 0, 0, 0, 1, 0, 0, 0, 0, 0, 'rev08,rev07'),
 (1093, 'EUH059', 'Hazardous to the ozone layer', 0, 0, 0, 0, 1, 0, 0, 0, 0, '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `samples`
+--
+
 CREATE TABLE `samples` (
   `count` int UNSIGNED NOT NULL,
   `label` varchar(100) DEFAULT NULL,
@@ -3701,10 +4458,22 @@ CREATE TABLE `samples` (
   `secret` tinyint UNSIGNED DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sample_types_def`
+--
+
 CREATE TABLE `sample_types_def` (
   `count` tinyint UNSIGNED NOT NULL,
   `sample_type_name` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sellers`
+--
 
 CREATE TABLE `sellers` (
   `seller_id` int UNSIGNED NOT NULL,
@@ -3715,6 +4484,12 @@ CREATE TABLE `sellers` (
   `seller_email` varchar(125) DEFAULT NULL,
   `seller_url` blob
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sequences`
+--
 
 CREATE TABLE `sequences` (
   `count` int UNSIGNED NOT NULL,
@@ -3729,6 +4504,12 @@ CREATE TABLE `sequences` (
   `secret` tinyint UNSIGNED DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sequences_genbank_annots`
+--
+
 CREATE TABLE `sequences_genbank_annots` (
   `id` int NOT NULL,
   `count` int NOT NULL DEFAULT '0',
@@ -3742,12 +4523,24 @@ CREATE TABLE `sequences_genbank_annots` (
   `plasmid_id` int DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sequence_files`
+--
+
 CREATE TABLE `sequence_files` (
   `id` int UNSIGNED NOT NULL,
   `seq_id` int UNSIGNED DEFAULT NULL,
   `seq_file` varchar(150) DEFAULT NULL,
   `title` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_prefs`
+--
 
 CREATE TABLE `setup_prefs` (
   `id` tinyint UNSIGNED NOT NULL DEFAULT '0',
@@ -3770,8 +4563,18 @@ CREATE TABLE `setup_prefs` (
   `icon4_img` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `setup_prefs`
+--
+
 INSERT INTO `setup_prefs` (`id`, `login_pref`, `login_block`, `lab_name`, `lab_logo`, `results_per_page`, `icon1_name`, `icon1_url`, `icon1_img`, `icon2_name`, `icon2_url`, `icon2_img`, `icon3_name`, `icon3_url`, `icon3_img`, `icon4_name`, `icon4_url`, `icon4_img`) VALUES
 (0, 1, NULL, 'Shen Lab', NULL, 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `signatures`
+--
 
 CREATE TABLE `signatures` (
   `signature_id` int NOT NULL,
@@ -3791,6 +4594,12 @@ CREATE TABLE `signatures` (
   `version_number` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `storage_facilities`
+--
+
 CREATE TABLE `storage_facilities` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(35) DEFAULT NULL,
@@ -3798,8 +4607,18 @@ CREATE TABLE `storage_facilities` (
   `group_id` int DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `storage_facilities`
+--
+
 INSERT INTO `storage_facilities` (`id`, `name`, `description`, `group_id`) VALUES
 (1, 'NPDC Cold Room', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `strains`
+--
 
 CREATE TABLE `strains` (
   `count` int UNSIGNED NOT NULL,
@@ -3828,6 +4647,12 @@ CREATE TABLE `strains` (
   `chem_id_child` int UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `strains_log`
+--
+
 CREATE TABLE `strains_log` (
   `count` int UNSIGNED NOT NULL,
   `strain_id` int UNSIGNED DEFAULT NULL,
@@ -3839,6 +4664,12 @@ CREATE TABLE `strains_log` (
   `extra1` varchar(50) DEFAULT NULL,
   `extra2` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `structures`
+--
 
 CREATE TABLE `structures` (
   `count` int UNSIGNED NOT NULL,
@@ -3886,10 +4717,22 @@ CREATE TABLE `structures` (
   `inchi` varchar(250) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags_list`
+--
+
 CREATE TABLE `tags_list` (
   `id` int NOT NULL,
   `tag` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_groups`
+--
 
 CREATE TABLE `user_groups` (
   `user_id` int NOT NULL,
@@ -3897,10 +4740,20 @@ CREATE TABLE `user_groups` (
   `is_primary` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user_groups`
+--
+
 INSERT INTO `user_groups` (`user_id`, `group_id`, `is_primary`) VALUES
 (2, 0, 0),
 (3, 0, 0),
 (4, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worklists`
+--
 
 CREATE TABLE `worklists` (
   `list_id` int UNSIGNED NOT NULL,
@@ -3913,35 +4766,59 @@ CREATE TABLE `worklists` (
   `see_sec` tinyint UNSIGNED DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `abook`
+--
 ALTER TABLE `abook`
   ADD PRIMARY KEY (`count`),
   ADD KEY `abook_cat` (`abook_cat`);
 
+--
+-- Indexes for table `admin`
+--
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
   ADD KEY `group_type` (`group_type`),
   ADD KEY `contact_id` (`contact_id`),
   ADD KEY `badge_number` (`badge_number`);
 
+--
+-- Indexes for table `alerts_email_setup`
+--
 ALTER TABLE `alerts_email_setup`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `animals`
+--
 ALTER TABLE `animals`
   ADD PRIMARY KEY (`count`),
   ADD KEY `unique_code` (`unique_code`),
   ADD KEY `keeper` (`keeper`),
   ADD KEY `chem_id_child` (`chem_id_child`);
 
+--
+-- Indexes for table `animals_cages`
+--
 ALTER TABLE `animals_cages`
   ADD PRIMARY KEY (`cage_id`),
   ADD KEY `animal_id` (`animal_id`),
   ADD KEY `local_id` (`local_id`);
 
+--
+-- Indexes for table `animals_cages_def`
+--
 ALTER TABLE `animals_cages_def`
   ADD PRIMARY KEY (`count`),
   ADD KEY `group_id` (`group_id`);
 
+--
+-- Indexes for table `animals_crossbreed`
+--
 ALTER TABLE `animals_crossbreed`
   ADD PRIMARY KEY (`cross_id`),
   ADD KEY `animal_1` (`animal_1`),
@@ -3949,12 +4826,18 @@ ALTER TABLE `animals_crossbreed`
   ADD KEY `animal_2` (`animal_2`),
   ADD KEY `module_2` (`module_2`);
 
+--
+-- Indexes for table `animals_crossbreed_descendants`
+--
 ALTER TABLE `animals_crossbreed_descendants`
   ADD PRIMARY KEY (`id`),
   ADD KEY `descendant` (`descendant`),
   ADD KEY `descendant_module` (`descendant_module`),
   ADD KEY `cross_id` (`cross_id`);
 
+--
+-- Indexes for table `antibodies`
+--
 ALTER TABLE `antibodies`
   ADD PRIMARY KEY (`count`),
   ADD KEY `isotype_id` (`isotype_id`),
@@ -3969,10 +4852,16 @@ ALTER TABLE `antibodies`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `antibodies_options`
+--
 ALTER TABLE `antibodies_options`
   ADD PRIMARY KEY (`option_id`),
   ADD KEY `box_id` (`option_type`);
 
+--
+-- Indexes for table `associated_owners`
+--
 ALTER TABLE `associated_owners`
   ADD PRIMARY KEY (`id`),
   ADD KEY `owner` (`owner`),
@@ -3980,9 +4869,15 @@ ALTER TABLE `associated_owners`
   ADD KEY `record_id` (`record_id`),
   ADD KEY `record_module` (`record_module`);
 
+--
+-- Indexes for table `bookmarks`
+--
 ALTER TABLE `bookmarks`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `boxes_def`
+--
 ALTER TABLE `boxes_def`
   ADD PRIMARY KEY (`box_id`),
   ADD KEY `location` (`location`),
@@ -3990,25 +4885,40 @@ ALTER TABLE `boxes_def`
   ADD KEY `keeper` (`keeper`),
   ADD KEY `box_type` (`box_type`);
 
+--
+-- Indexes for table `boxes_def_model`
+--
 ALTER TABLE `boxes_def_model`
   ADD PRIMARY KEY (`box_id`),
   ADD KEY `box_type` (`box_type`),
   ADD KEY `keeper` (`keeper`);
 
+--
+-- Indexes for table `boxes_def_owners`
+--
 ALTER TABLE `boxes_def_owners`
   ADD PRIMARY KEY (`bdo_id`),
   ADD KEY `box_id` (`box_id`),
   ADD KEY `keeper_id` (`keeper_id`),
   ADD KEY `group_id` (`group_id`);
 
+--
+-- Indexes for table `boxes_grid_def`
+--
 ALTER TABLE `boxes_grid_def`
   ADD PRIMARY KEY (`count`),
   ADD KEY `box_id` (`box_id`);
 
+--
+-- Indexes for table `boxes_grid_def_model`
+--
 ALTER TABLE `boxes_grid_def_model`
   ADD PRIMARY KEY (`count`),
   ADD KEY `box_id` (`box_id`);
 
+--
+-- Indexes for table `boxes_local_def`
+--
 ALTER TABLE `boxes_local_def`
   ADD PRIMARY KEY (`id`),
   ADD KEY `facility_id` (`facility_id`),
@@ -4016,6 +4926,9 @@ ALTER TABLE `boxes_local_def`
   ADD KEY `storage_type` (`storage_type`),
   ADD KEY `store_mode` (`store_mode`);
 
+--
+-- Indexes for table `boxes_secondary_def`
+--
 ALTER TABLE `boxes_secondary_def`
   ADD PRIMARY KEY (`id`),
   ADD KEY `box_id` (`box_id`),
@@ -4024,6 +4937,9 @@ ALTER TABLE `boxes_secondary_def`
   ADD KEY `unique_code` (`unique_code`),
   ADD KEY `sec_status` (`sec_status`);
 
+--
+-- Indexes for table `boxes_storage_colors`
+--
 ALTER TABLE `boxes_storage_colors`
   ADD PRIMARY KEY (`color_grid_id`),
   ADD KEY `box_id` (`box_id`),
@@ -4031,11 +4947,17 @@ ALTER TABLE `boxes_storage_colors`
   ADD KEY `module` (`module`),
   ADD KEY `sec_id` (`sec_id`);
 
+--
+-- Indexes for table `boxes_storage_comments`
+--
 ALTER TABLE `boxes_storage_comments`
   ADD PRIMARY KEY (`comment_id`),
   ADD KEY `record_id_main` (`record_id_main`),
   ADD KEY `storage_id_sec` (`storage_id_sec`);
 
+--
+-- Indexes for table `boxes_straws_def`
+--
 ALTER TABLE `boxes_straws_def`
   ADD PRIMARY KEY (`straw_id`),
   ADD KEY `record_id` (`record_id`),
@@ -4043,9 +4965,15 @@ ALTER TABLE `boxes_straws_def`
   ADD KEY `box_id` (`box_id`),
   ADD KEY `sec_id` (`sec_id`);
 
+--
+-- Indexes for table `boxes_temp_def`
+--
 ALTER TABLE `boxes_temp_def`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `budgets_money`
+--
 ALTER TABLE `budgets_money`
   ADD PRIMARY KEY (`b_id`),
   ADD KEY `budget_id` (`budget_id`),
@@ -4053,19 +4981,31 @@ ALTER TABLE `budgets_money`
   ADD KEY `group_id` (`group_id`),
   ADD KEY `valid_user` (`valid_user`);
 
+--
+-- Indexes for table `budgets_spread`
+--
 ALTER TABLE `budgets_spread`
   ADD PRIMARY KEY (`budget_scheduling_count`),
   ADD KEY `b_id` (`b_id`);
 
+--
+-- Indexes for table `certificates`
+--
 ALTER TABLE `certificates`
   ADD PRIMARY KEY (`certif_id`),
   ADD KEY `user_id` (`user_id`);
 
+--
+-- Indexes for table `chemicals`
+--
 ALTER TABLE `chemicals`
   ADD PRIMARY KEY (`count`),
   ADD KEY `cat_id` (`cat_id`),
   ADD KEY `seller_id` (`seller_id`);
 
+--
+-- Indexes for table `chemicals_lots`
+--
 ALTER TABLE `chemicals_lots`
   ADD PRIMARY KEY (`count`),
   ADD KEY `chem_id` (`chem_id`),
@@ -4075,61 +5015,109 @@ ALTER TABLE `chemicals_lots`
   ADD KEY `d_trash_by` (`d_trash_by`),
   ADD KEY `number` (`number`);
 
+--
+-- Indexes for table `chem_cat`
+--
 ALTER TABLE `chem_cat`
   ADD PRIMARY KEY (`cat_id`);
 
+--
+-- Indexes for table `chem_lots_conso`
+--
 ALTER TABLE `chem_lots_conso`
   ADD PRIMARY KEY (`conso_id`);
 
+--
+-- Indexes for table `chem_risk_icons`
+--
 ALTER TABLE `chem_risk_icons`
   ADD PRIMARY KEY (`count`),
   ADD KEY `chem_id` (`chem_id`),
   ADD KEY `risk_icon` (`risk_icon`),
   ADD KEY `module` (`module`);
 
+--
+-- Indexes for table `chem_risk_info`
+--
 ALTER TABLE `chem_risk_info`
   ADD PRIMARY KEY (`count`),
   ADD KEY `chem_id` (`chem_id`),
   ADD KEY `module` (`module`);
 
+--
+-- Indexes for table `chem_risk_link`
+--
 ALTER TABLE `chem_risk_link`
   ADD PRIMARY KEY (`count`),
   ADD KEY `module` (`module`);
 
+--
+-- Indexes for table `chem_storage`
+--
 ALTER TABLE `chem_storage`
   ADD PRIMARY KEY (`storage_id`);
 
+--
+-- Indexes for table `contacts`
+--
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `contacts_home_blocks`
+--
 ALTER TABLE `contacts_home_blocks`
   ADD PRIMARY KEY (`block_id`);
 
+--
+-- Indexes for table `docs`
+--
 ALTER TABLE `docs`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `docs_cat`
+--
 ALTER TABLE `docs_cat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent` (`parent`);
 
+--
+-- Indexes for table `equipments`
+--
 ALTER TABLE `equipments`
   ADD PRIMARY KEY (`count`),
   ADD KEY `cat` (`cat`),
   ADD KEY `keeper` (`keeper`),
   ADD KEY `seller_id` (`seller_id`);
 
+--
+-- Indexes for table `export_models`
+--
 ALTER TABLE `export_models`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `export_models_fields`
+--
 ALTER TABLE `export_models_fields`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `field_masks`
+--
 ALTER TABLE `field_masks`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `file_types`
+--
 ALTER TABLE `file_types`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `history`
+--
 ALTER TABLE `history`
   ADD PRIMARY KEY (`count`),
   ADD KEY `user_module` (`user_module`),
@@ -4137,36 +5125,60 @@ ALTER TABLE `history`
   ADD KEY `user_record` (`user_record`),
   ADD KEY `date` (`date`);
 
+--
+-- Indexes for table `licence`
+--
 ALTER TABLE `licence`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `locked_records`
+--
 ALTER TABLE `locked_records`
   ADD PRIMARY KEY (`record_id`,`module_short_name`,`timestamp`),
   ADD KEY `record_id` (`record_id`),
   ADD KEY `module_short_name` (`module_short_name`);
 
+--
+-- Indexes for table `maintenance`
+--
 ALTER TABLE `maintenance`
   ADD PRIMARY KEY (`count`),
   ADD KEY `equipment_id` (`equipment_id`),
   ADD KEY `mt_cat_id` (`mt_cat_id`),
   ADD KEY `alert` (`alert`);
 
+--
+-- Indexes for table `messages`
+--
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `microarrays`
+--
 ALTER TABLE `microarrays`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
   ADD KEY `chem_id_child` (`chem_id_child`);
 
+--
+-- Indexes for table `microarrays_genes`
+--
 ALTER TABLE `microarrays_genes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `gene_id` (`gene_id`),
   ADD KEY `array_ref` (`array_ref`);
 
+--
+-- Indexes for table `modules`
+--
 ALTER TABLE `modules`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `modules_custom`
+--
 ALTER TABLE `modules_custom`
   ADD PRIMARY KEY (`field_id`),
   ADD KEY `module_table` (`module_table`),
@@ -4174,21 +5186,36 @@ ALTER TABLE `modules_custom`
   ADD KEY `analysis_tab` (`analysis_tab`),
   ADD KEY `visible` (`visible`);
 
+--
+-- Indexes for table `modules_custom_field_legends`
+--
 ALTER TABLE `modules_custom_field_legends`
   ADD PRIMARY KEY (`id`),
   ADD KEY `custom_field_id` (`custom_field_id`),
   ADD KEY `lang` (`lang`);
 
+--
+-- Indexes for table `modules_custom_files`
+--
 ALTER TABLE `modules_custom_files`
   ADD PRIMARY KEY (`file_id`);
 
+--
+-- Indexes for table `modules_custom_options`
+--
 ALTER TABLE `modules_custom_options`
   ADD PRIMARY KEY (`option_id`);
 
+--
+-- Indexes for table `modules_custom_values`
+--
 ALTER TABLE `modules_custom_values`
   ADD PRIMARY KEY (`val_id`),
   ADD KEY `field_id_link` (`field_id_link`);
 
+--
+-- Indexes for table `modules_field`
+--
 ALTER TABLE `modules_field`
   ADD PRIMARY KEY (`field_id`),
   ADD KEY `form_order` (`form_order`),
@@ -4196,23 +5223,38 @@ ALTER TABLE `modules_field`
   ADD KEY `form_type` (`form_type`),
   ADD KEY `module_table` (`module_table`);
 
+--
+-- Indexes for table `modules_field_legends`
+--
 ALTER TABLE `modules_field_legends`
   ADD PRIMARY KEY (`id`),
   ADD KEY `form_field_id` (`form_field_id`),
   ADD KEY `lang` (`lang`);
 
+--
+-- Indexes for table `modules_field_options`
+--
 ALTER TABLE `modules_field_options`
   ADD PRIMARY KEY (`id`),
   ADD KEY `module` (`module`);
 
+--
+-- Indexes for table `modules_options`
+--
 ALTER TABLE `modules_options`
   ADD PRIMARY KEY (`option_id`),
   ADD KEY `option_type` (`option_type`),
   ADD KEY `module_ref` (`module_ref`);
 
+--
+-- Indexes for table `modules_options_cron`
+--
 ALTER TABLE `modules_options_cron`
   ADD PRIMARY KEY (`cron_id`);
 
+--
+-- Indexes for table `modules_relation`
+--
 ALTER TABLE `modules_relation`
   ADD PRIMARY KEY (`count`),
   ADD KEY `id_from` (`id_from`),
@@ -4220,34 +5262,64 @@ ALTER TABLE `modules_relation`
   ADD KEY `id_to` (`id_to`),
   ADD KEY `module_to` (`module_to`);
 
+--
+-- Indexes for table `ncbi_requests`
+--
 ALTER TABLE `ncbi_requests`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `netplasmid_annotations`
+--
 ALTER TABLE `netplasmid_annotations`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `plasmid_id` (`plasmid_id`,`start`,`end`);
 
+--
+-- Indexes for table `netplasmid_customs_seqs`
+--
 ALTER TABLE `netplasmid_customs_seqs`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `netplasmid_def`
+--
 ALTER TABLE `netplasmid_def`
   ADD PRIMARY KEY (`plasmid_id`);
 
+--
+-- Indexes for table `netplasmid_enz`
+--
 ALTER TABLE `netplasmid_enz`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `netplasmid_images`
+--
 ALTER TABLE `netplasmid_images`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `netplasmid_orf`
+--
 ALTER TABLE `netplasmid_orf`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `netplasmid_orf_markers`
+--
 ALTER TABLE `netplasmid_orf_markers`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `netplasmid_restriction_enzymes`
+--
 ALTER TABLE `netplasmid_restriction_enzymes`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `npdc_gdnas`
+--
 ALTER TABLE `npdc_gdnas`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4256,6 +5328,9 @@ ALTER TABLE `npdc_gdnas`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `npdc_genome_sequences`
+--
 ALTER TABLE `npdc_genome_sequences`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4264,6 +5339,9 @@ ALTER TABLE `npdc_genome_sequences`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `npdc_liquid_growth`
+--
 ALTER TABLE `npdc_liquid_growth`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4272,6 +5350,9 @@ ALTER TABLE `npdc_liquid_growth`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `npdc_sequencing_batches`
+--
 ALTER TABLE `npdc_sequencing_batches`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4280,6 +5361,9 @@ ALTER TABLE `npdc_sequencing_batches`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `npdc_sequencing_samples`
+--
 ALTER TABLE `npdc_sequencing_samples`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4288,6 +5372,9 @@ ALTER TABLE `npdc_sequencing_samples`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `npdc_strains`
+--
 ALTER TABLE `npdc_strains`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4296,6 +5383,9 @@ ALTER TABLE `npdc_strains`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `order_list`
+--
 ALTER TABLE `order_list`
   ADD PRIMARY KEY (`order_list_id`),
   ADD KEY `chem_id` (`chem_id`),
@@ -4305,25 +5395,43 @@ ALTER TABLE `order_list`
   ADD KEY `budget` (`budget`),
   ADD KEY `po_template_id` (`po_template_id`);
 
+--
+-- Indexes for table `order_list_invoices`
+--
 ALTER TABLE `order_list_invoices`
   ADD KEY `Index 1` (`inv_id`),
   ADD KEY `po_number` (`po_number`),
   ADD KEY `invoice_ref` (`invoice_ref`);
 
+--
+-- Indexes for table `order_list_quotes`
+--
 ALTER TABLE `order_list_quotes`
   ADD PRIMARY KEY (`quote_id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `quote_ref` (`quote_ref`);
 
+--
+-- Indexes for table `order_templates`
+--
 ALTER TABLE `order_templates`
   ADD PRIMARY KEY (`template_id`);
 
+--
+-- Indexes for table `order_templates_xls`
+--
 ALTER TABLE `order_templates_xls`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `organisms`
+--
 ALTER TABLE `organisms`
   ADD PRIMARY KEY (`org_id`);
 
+--
+-- Indexes for table `plasmids`
+--
 ALTER TABLE `plasmids`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4332,10 +5440,16 @@ ALTER TABLE `plasmids`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `plasmid_sequences`
+--
 ALTER TABLE `plasmid_sequences`
   ADD PRIMARY KEY (`count`),
   ADD KEY `plasmid_id` (`plasmid_id`);
 
+--
+-- Indexes for table `primers`
+--
 ALTER TABLE `primers`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4344,55 +5458,97 @@ ALTER TABLE `primers`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `processes`
+--
 ALTER TABLE `processes`
   ADD PRIMARY KEY (`count`),
   ADD KEY `sample_id` (`sample_id`);
 
+--
+-- Indexes for table `process_type_def`
+--
 ALTER TABLE `process_type_def`
   ADD PRIMARY KEY (`count`),
   ADD KEY `parent` (`parent`);
 
+--
+-- Indexes for table `projects_lc`
+--
 ALTER TABLE `projects_lc`
   ADD PRIMARY KEY (`proj_id`);
 
+--
+-- Indexes for table `projects_lc_groups`
+--
 ALTER TABLE `projects_lc_groups`
   ADD PRIMARY KEY (`id`),
   ADD KEY `proj_id` (`proj_id`),
   ADD KEY `group_id` (`group_id`);
 
+--
+-- Indexes for table `projects_lc_records`
+--
 ALTER TABLE `projects_lc_records`
   ADD PRIMARY KEY (`count_id`),
   ADD KEY `proj_id` (`proj_id`),
   ADD KEY `record_id` (`record_id`),
   ADD KEY `module` (`module`);
 
+--
+-- Indexes for table `recipes`
+--
 ALTER TABLE `recipes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
+--
+-- Indexes for table `recipes_categories`
+--
 ALTER TABLE `recipes_categories`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `recipes_log`
+--
 ALTER TABLE `recipes_log`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `recipe_components`
+--
 ALTER TABLE `recipe_components`
   ADD PRIMARY KEY (`component_id`);
 
+--
+-- Indexes for table `records_options`
+--
 ALTER TABLE `records_options`
   ADD PRIMARY KEY (`option_id`);
 
+--
+-- Indexes for table `record_versioning`
+--
 ALTER TABLE `record_versioning`
   ADD PRIMARY KEY (`id`),
   ADD KEY `record_id` (`record_id`),
   ADD KEY `module_table` (`module_table`);
 
+--
+-- Indexes for table `risk_danger`
+--
 ALTER TABLE `risk_danger`
   ADD PRIMARY KEY (`danger_id`);
 
+--
+-- Indexes for table `risk_safety`
+--
 ALTER TABLE `risk_safety`
   ADD PRIMARY KEY (`risk_id`);
 
+--
+-- Indexes for table `samples`
+--
 ALTER TABLE `samples`
   ADD PRIMARY KEY (`count`),
   ADD KEY `org` (`org`),
@@ -4402,40 +5558,67 @@ ALTER TABLE `samples`
   ADD KEY `sample_type` (`sample_type`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `sample_types_def`
+--
 ALTER TABLE `sample_types_def`
   ADD PRIMARY KEY (`count`);
 
+--
+-- Indexes for table `sellers`
+--
 ALTER TABLE `sellers`
   ADD PRIMARY KEY (`seller_id`);
 
+--
+-- Indexes for table `sequences`
+--
 ALTER TABLE `sequences`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
   ADD KEY `type` (`type`);
 
+--
+-- Indexes for table `sequences_genbank_annots`
+--
 ALTER TABLE `sequences_genbank_annots`
   ADD PRIMARY KEY (`id`),
   ADD KEY `label` (`label`),
   ADD KEY `plasmid_id` (`plasmid_id`),
   ADD KEY `count` (`count`);
 
+--
+-- Indexes for table `sequence_files`
+--
 ALTER TABLE `sequence_files`
   ADD PRIMARY KEY (`id`),
   ADD KEY `seq_id` (`seq_id`);
 
+--
+-- Indexes for table `setup_prefs`
+--
 ALTER TABLE `setup_prefs`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `signatures`
+--
 ALTER TABLE `signatures`
   ADD PRIMARY KEY (`signature_id`),
   ADD KEY `record_id` (`record_id`),
   ADD KEY `module` (`module`),
   ADD KEY `user_id` (`user_id`);
 
+--
+-- Indexes for table `storage_facilities`
+--
 ALTER TABLE `storage_facilities`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
+--
+-- Indexes for table `strains`
+--
 ALTER TABLE `strains`
   ADD PRIMARY KEY (`count`),
   ADD KEY `unique_code` (`unique_code`),
@@ -4445,10 +5628,16 @@ ALTER TABLE `strains`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `strains_log`
+--
 ALTER TABLE `strains_log`
   ADD PRIMARY KEY (`count`),
   ADD KEY `strain_id` (`strain_id`);
 
+--
+-- Indexes for table `structures`
+--
 ALTER TABLE `structures`
   ADD PRIMARY KEY (`count`),
   ADD KEY `keeper` (`keeper`),
@@ -4458,344 +5647,686 @@ ALTER TABLE `structures`
   ADD KEY `chem_id_child` (`chem_id_child`),
   ADD KEY `box_status` (`box_status`);
 
+--
+-- Indexes for table `tags_list`
+--
 ALTER TABLE `tags_list`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indexes for table `user_groups`
+--
 ALTER TABLE `user_groups`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `group_id` (`group_id`);
 
+--
+-- Indexes for table `worklists`
+--
 ALTER TABLE `worklists`
   ADD PRIMARY KEY (`list_id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `abook`
+--
 ALTER TABLE `abook`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `admin`
+--
 ALTER TABLE `admin`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT for table `animals`
+--
 ALTER TABLE `animals`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `animals_cages`
+--
 ALTER TABLE `animals_cages`
   MODIFY `cage_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `animals_cages_def`
+--
 ALTER TABLE `animals_cages_def`
   MODIFY `count` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `animals_crossbreed`
+--
 ALTER TABLE `animals_crossbreed`
   MODIFY `cross_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `animals_crossbreed_descendants`
+--
 ALTER TABLE `animals_crossbreed_descendants`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `antibodies`
+--
 ALTER TABLE `antibodies`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `antibodies_options`
+--
 ALTER TABLE `antibodies_options`
   MODIFY `option_id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
+--
+-- AUTO_INCREMENT for table `associated_owners`
+--
 ALTER TABLE `associated_owners`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `bookmarks`
+--
 ALTER TABLE `bookmarks`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_def`
+--
 ALTER TABLE `boxes_def`
   MODIFY `box_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_def_model`
+--
 ALTER TABLE `boxes_def_model`
   MODIFY `box_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT for table `boxes_def_owners`
+--
 ALTER TABLE `boxes_def_owners`
   MODIFY `bdo_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_grid_def`
+--
 ALTER TABLE `boxes_grid_def`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_grid_def_model`
+--
 ALTER TABLE `boxes_grid_def_model`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_local_def`
+--
 ALTER TABLE `boxes_local_def`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_secondary_def`
+--
 ALTER TABLE `boxes_secondary_def`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_storage_colors`
+--
 ALTER TABLE `boxes_storage_colors`
   MODIFY `color_grid_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_storage_comments`
+--
 ALTER TABLE `boxes_storage_comments`
   MODIFY `comment_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_straws_def`
+--
 ALTER TABLE `boxes_straws_def`
   MODIFY `straw_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `boxes_temp_def`
+--
 ALTER TABLE `boxes_temp_def`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT for table `budgets_money`
+--
 ALTER TABLE `budgets_money`
   MODIFY `b_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `budgets_spread`
+--
 ALTER TABLE `budgets_spread`
   MODIFY `budget_scheduling_count` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `certificates`
+--
 ALTER TABLE `certificates`
   MODIFY `certif_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chemicals`
+--
 ALTER TABLE `chemicals`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chemicals_lots`
+--
 ALTER TABLE `chemicals_lots`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_cat`
+--
 ALTER TABLE `chem_cat`
   MODIFY `cat_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_lots_conso`
+--
 ALTER TABLE `chem_lots_conso`
   MODIFY `conso_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_risk_icons`
+--
 ALTER TABLE `chem_risk_icons`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_risk_info`
+--
 ALTER TABLE `chem_risk_info`
   MODIFY `count` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_risk_link`
+--
 ALTER TABLE `chem_risk_link`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `chem_storage`
+--
 ALTER TABLE `chem_storage`
   MODIFY `storage_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `contacts`
+--
 ALTER TABLE `contacts`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT for table `contacts_home_blocks`
+--
 ALTER TABLE `contacts_home_blocks`
   MODIFY `block_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `docs`
+--
 ALTER TABLE `docs`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `docs_cat`
+--
 ALTER TABLE `docs_cat`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
+--
+-- AUTO_INCREMENT for table `equipments`
+--
 ALTER TABLE `equipments`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `export_models`
+--
 ALTER TABLE `export_models`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `export_models_fields`
+--
 ALTER TABLE `export_models_fields`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `field_masks`
+--
 ALTER TABLE `field_masks`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+--
+-- AUTO_INCREMENT for table `file_types`
+--
 ALTER TABLE `file_types`
   MODIFY `count` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+--
+-- AUTO_INCREMENT for table `history`
+--
 ALTER TABLE `history`
-  MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
+--
+-- AUTO_INCREMENT for table `licence`
+--
 ALTER TABLE `licence`
   MODIFY `count` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT for table `maintenance`
+--
 ALTER TABLE `maintenance`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `messages`
+--
 ALTER TABLE `messages`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `microarrays`
+--
 ALTER TABLE `microarrays`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `microarrays_genes`
+--
 ALTER TABLE `microarrays_genes`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `modules`
+--
 ALTER TABLE `modules`
   MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
+--
+-- AUTO_INCREMENT for table `modules_custom`
+--
 ALTER TABLE `modules_custom`
-  MODIFY `field_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `field_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
+--
+-- AUTO_INCREMENT for table `modules_custom_field_legends`
+--
 ALTER TABLE `modules_custom_field_legends`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
+--
+-- AUTO_INCREMENT for table `modules_custom_files`
+--
 ALTER TABLE `modules_custom_files`
   MODIFY `file_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `modules_custom_options`
+--
 ALTER TABLE `modules_custom_options`
   MODIFY `option_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+--
+-- AUTO_INCREMENT for table `modules_custom_values`
+--
 ALTER TABLE `modules_custom_values`
-  MODIFY `val_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `val_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
+--
+-- AUTO_INCREMENT for table `modules_field`
+--
 ALTER TABLE `modules_field`
   MODIFY `field_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=469;
 
+--
+-- AUTO_INCREMENT for table `modules_field_legends`
+--
 ALTER TABLE `modules_field_legends`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
+--
+-- AUTO_INCREMENT for table `modules_field_options`
+--
 ALTER TABLE `modules_field_options`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `modules_options`
+--
 ALTER TABLE `modules_options`
   MODIFY `option_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
+--
+-- AUTO_INCREMENT for table `modules_options_cron`
+--
 ALTER TABLE `modules_options_cron`
   MODIFY `cron_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT for table `modules_relation`
+--
 ALTER TABLE `modules_relation`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `ncbi_requests`
+--
 ALTER TABLE `ncbi_requests`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_annotations`
+--
 ALTER TABLE `netplasmid_annotations`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_customs_seqs`
+--
 ALTER TABLE `netplasmid_customs_seqs`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_def`
+--
 ALTER TABLE `netplasmid_def`
   MODIFY `plasmid_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_enz`
+--
 ALTER TABLE `netplasmid_enz`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_images`
+--
 ALTER TABLE `netplasmid_images`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_orf`
+--
 ALTER TABLE `netplasmid_orf`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_orf_markers`
+--
 ALTER TABLE `netplasmid_orf_markers`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
+--
+-- AUTO_INCREMENT for table `netplasmid_restriction_enzymes`
+--
 ALTER TABLE `netplasmid_restriction_enzymes`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=706;
 
+--
+-- AUTO_INCREMENT for table `npdc_gdnas`
+--
 ALTER TABLE `npdc_gdnas`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `npdc_genome_sequences`
+--
 ALTER TABLE `npdc_genome_sequences`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `npdc_liquid_growth`
+--
 ALTER TABLE `npdc_liquid_growth`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `npdc_sequencing_batches`
+--
 ALTER TABLE `npdc_sequencing_batches`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `npdc_sequencing_samples`
+--
 ALTER TABLE `npdc_sequencing_samples`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `npdc_strains`
+--
 ALTER TABLE `npdc_strains`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT for table `order_list`
+--
 ALTER TABLE `order_list`
   MODIFY `order_list_id` mediumint UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `order_list_invoices`
+--
 ALTER TABLE `order_list_invoices`
   MODIFY `inv_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `order_list_quotes`
+--
 ALTER TABLE `order_list_quotes`
   MODIFY `quote_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `order_templates`
+--
 ALTER TABLE `order_templates`
   MODIFY `template_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT for table `order_templates_xls`
+--
 ALTER TABLE `order_templates_xls`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `organisms`
+--
 ALTER TABLE `organisms`
   MODIFY `org_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `plasmids`
+--
 ALTER TABLE `plasmids`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `plasmid_sequences`
+--
 ALTER TABLE `plasmid_sequences`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `primers`
+--
 ALTER TABLE `primers`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `processes`
+--
 ALTER TABLE `processes`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `process_type_def`
+--
 ALTER TABLE `process_type_def`
   MODIFY `count` tinyint UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `projects_lc`
+--
 ALTER TABLE `projects_lc`
   MODIFY `proj_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `projects_lc_groups`
+--
 ALTER TABLE `projects_lc_groups`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `projects_lc_records`
+--
 ALTER TABLE `projects_lc_records`
   MODIFY `count_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `recipes`
+--
 ALTER TABLE `recipes`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `recipes_categories`
+--
 ALTER TABLE `recipes_categories`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `recipes_log`
+--
 ALTER TABLE `recipes_log`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `recipe_components`
+--
 ALTER TABLE `recipe_components`
   MODIFY `component_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `records_options`
+--
 ALTER TABLE `records_options`
   MODIFY `option_id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `record_versioning`
+--
 ALTER TABLE `record_versioning`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `risk_danger`
+--
 ALTER TABLE `risk_danger`
   MODIFY `danger_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
+--
+-- AUTO_INCREMENT for table `risk_safety`
+--
 ALTER TABLE `risk_safety`
   MODIFY `risk_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1094;
 
+--
+-- AUTO_INCREMENT for table `samples`
+--
 ALTER TABLE `samples`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `sample_types_def`
+--
 ALTER TABLE `sample_types_def`
   MODIFY `count` tinyint UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `sellers`
+--
 ALTER TABLE `sellers`
   MODIFY `seller_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `sequences`
+--
 ALTER TABLE `sequences`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `sequences_genbank_annots`
+--
 ALTER TABLE `sequences_genbank_annots`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `sequence_files`
+--
 ALTER TABLE `sequence_files`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `signatures`
+--
 ALTER TABLE `signatures`
   MODIFY `signature_id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `storage_facilities`
+--
 ALTER TABLE `storage_facilities`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT for table `strains`
+--
 ALTER TABLE `strains`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `strains_log`
+--
 ALTER TABLE `strains_log`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `structures`
+--
 ALTER TABLE `structures`
   MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `tags_list`
+--
 ALTER TABLE `tags_list`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT for table `worklists`
+--
 ALTER TABLE `worklists`
   MODIFY `list_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;

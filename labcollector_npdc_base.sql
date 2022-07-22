@@ -1,21 +1,5 @@
 --
 
-INSERT INTO `admin` (`id`, `admin`, `password`, `user_type`, `contact_id`, `group_type`, `count_failed`, `ip_restriction`, `main_group_limit`, `suspended`, `temporary_pass`, `archived`, `pass_date`, `badge_number`) VALUES
-(1, 'superadmin', 'M:&FENZ|AWWbQ:I', 1, 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'npdcadmin', 'M:&FENZ|AWRWE%', 2, 2, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:13:34', NULL),
-(3, 'limsadmin', 'M:&FENZ|AWPPNI', 0, 3, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:14:00', NULL),
-(4, 'guest', 'HK/KX', 0, 4, 0, 0, NULL, NULL, NULL, NULL, NULL, '2022-06-13 17:15:58', NULL);
-
---
-
-INSERT INTO `contacts` (`count`, `name`, `lab`, `address`, `city`, `zip`, `country`, `tel`, `email`, `organisms`, `dummyimage`, `dummyimage_text`, `dummyimage_background`, `language`) VALUES
-(1, 'Super Admin', '', '', '', '', '', '', 'super.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c54459ba293ffffffa7ada0b4b9aec0c4bbe6e7e4f2f3f1d9dcd6cdd0c9cc5f670d000000097048597300000ec400000ec401952b0e1b0000016e494441544889ed944d6bc2401086375f35c7bed6448f9152e8d150a957457bd77f604aa13d1a283d27d0427f7677f64356d911af857d0f71575f66e69999284450505090d4fdfca9bac6f702a0fc34d601d031be07284df46d0aecfdbeb8d1c6b1beae803bbf51e61aaf375fd6b83bc63ed7142595f7f8aee3a340e937ae4caa443d538c7698798d3d6e9d5b86e10a07c6b83f29643b65b04f23f6e86e18ec1a23e7b64395db069c2982537c2c9113063b871332a726360cb66cf14765ceaabe96c1cee4fc8aa53e2be2fa04cf514fdb3333c70355cd4c3bee8f3bd16049d3f7630bbd915bf9990082c608ce28163a648e8232004bd629d7b022e8e257aa61b0854ed711af1183ad31b6d441a3116f6ca9838d3516978d892a544db5ba987a60d621f162a7f6b74e424f9c82cf15bdd1f39996adb6b36b31f41831fe9effa8fa5bfb12d43eecc880be0a01dbe8c8879d9986540e43e6c55e34662107c76548fdff54f17cb3f67c1d1414f4dff407a21d326b8b5ae7ef0000000049454e44ae426082, 'FFF', '9ba293', NULL),
-(2, 'NPDC Admin', '', '', '', '', '', '', 'npdc.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c5445cf3c3bffffffe79d9df9e6e6d55453db6c6cedb5b5f3cecee18584d0e7424e000000097048597300000ec400000ec401952b0e1b00000153494441544889edd44d6ec230100560c80fb0ec6b68936552a9fb58425d278bee9b1be01b901b3437ef8c9d310d9e1be0d944824fc6efd961b74b9326cdd34f878b7b96c0e03f3900ad022dea073802bd0af1b3850bf0a6c37e0b67e05587cd0616a851e9b0dac0139ad9ef26822e6480479c175c7578fe0f47dc462db6c5972b28c00e6daec5b6b818de528033860cef1aec17fe258105652bb5d804732e4860c6251a2536415a6008d0edcf2ab109d2b6da005de2092f2a1ca920811d2fb6576233cca8208106bf7cd3e2d80c0bdafc0ae9b1e363840ae966f52bcc5cfb05785d0552412bcc517fd09838b6f56d57df1e4e58278aed2015f4e9a115d8e87044e3a11158eb3043e5e0fd20e5c578806ea5810bf4d7a18c63af70f13097f7cae0a6c3dcc349ceceba6bafc0d2432b2fc114c596afac8390a2f7516c8123c37b8663145ba02be4102ec349ffa74a9326cd73cd1f5eab3ebeee9b04890000000049454e44ae426082, 'FFF', 'cf3c3b', NULL),
-(3, 'LIMS Admin', '', '', '', '', '', '', 'lims.admin@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c544503aa7affffff81d4bc22b48aa0dfcdc0e9dddff4ee61c9ab42bf9bac6ad8da000000097048597300000ec400000ec401952b0e1b000000fb494441544889edd43b1282301804e0288894ac8a5a1a0a6ba96cc90dc4197bb88114f67273030331d15f92de6cc5e38361f380311f1f1f1f8eb5712eb0a2a13061006c9de012c0d3052e243cb8c01c252a17d8e081bd0b2c71c6c6010648831fb54d3897a358d3b54db890671c851de6b2724bd73621978318d1b54dd87d5f48d73660df3806ac70debf8c9e6d0346d8f5970a1b6c91b06e1a131be4b8b06e8c763658e39a65d991acad43d9778805860adea761a4e0651ab6c3f1e7cefc8262580e2d555b87f5b0af22a493301ee74e963a1130bdf529e4fdad7ae2bbb6188b566ca6069aaaadc1778792a8ad41a11643f3eb4fe5e3e3f35779019de0297d808f47cf0000000049454e44ae426082, 'FFF', '03aa7a', NULL),
-(4, 'Guest', '', '', '', '', '', '', 'guest@lims.shenlab', NULL, 0x89504e470d0a1a0a0000000d49484452000000500000005004030000007c3fef9e0000001b504c54450698c0ffffff25a4c744b1cf82cbdfc0e5efdff2f7a1d8e763bed79234e35b000000097048597300000ec400000ec401952b0e1b000000ed494441544889edd43d0bc2301006e068fd5a0fb538561471b47eec558a385a10badac11fa0c55d14c19fed2551dbe9ee069dcc3b840e4fdb237789522e2e2eff91c16c1a08d83001cc61c5b905d8b419d70419ac6668fcf49c7170842ed70fe39c86f8c11353dcbbc28ec4a9102012c1237445aeca6f9f4d0b602b827569890d8089085600709dc7261702f6c1c775699bbd2760f823686acc48686b34e120c860691f6958ea0c0d6b45af69589a1e1aaae4338f0c2c269c8178667a22a88f752481fadffed5be41434f8f431ae34dc1407355f0d3a3b37e393f62a0ba1bb7131c1eefb1b9053c737171f9469ed89128be6d6d6eaa0000000049454e44ae426082, 'FFF', '0698c0', NULL);
-
---
-
 INSERT INTO `field_masks` (`id`, `field_name`, `module_table`, `mask_val`) VALUES
 (1, 'name', 'npdc_strains', 'NPDC000000'),
 (2, 'name', 'npdc_gdnas', 'Category_Plate_Well'),
@@ -180,7 +164,7 @@ INSERT INTO `modules_custom_values` (`val_id`, `value`, `field_id_link`, `defaul
 --
 
 INSERT INTO `modules_field` (`field_id`, `name`, `type`, `form_name_ref`, `form_name`, `form_type`, `form_order`, `visible`, `mandatory`, `summary_line`, `module_table`, `summary_line_width`) VALUES
-308, 'count', 'int', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
+(308, 'count', 'int', NULL, NULL, NULL, NULL, 'N', 0, 0, 'npdc_strains', NULL),
 (309, 'name', 'varchar', 'newname', 'name', 'text', 2, 'Y', 1, 0, 'npdc_strains', NULL),
 (310, 'comment_log', 'longtext', 'newdesc', 'comment_log', 'textarea', 13, 'Y', 0, 0, 'npdc_strains', NULL),
 (311, 'keeper', 'int', 'contact', 'keeper', 'select', 14, 'Y', 1, 0, 'npdc_strains', NULL),
@@ -660,12 +644,6 @@ ALTER TABLE `npdc_strains`
   ADD KEY `box_status` (`box_status`);
 
 --
-
-ALTER TABLE `admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
-ALTER TABLE `contacts`
-  MODIFY `count` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `modules`
   MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
